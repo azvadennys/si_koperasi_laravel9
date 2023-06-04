@@ -48,21 +48,39 @@ Route::middleware('auth')->group(function () {
         Route::post('/anggota/update/{id}', 'update')->name('anggota.update');
         Route::delete('/anggota/destroy/{id}', 'destroy')->name('anggota.destroy');
     });
-    Route::controller(PeriodeController::class)->group(function () {
-        Route::get('/periode', 'index')->name('periode.index');
-        Route::get('/periode/create', 'create')->name('periode.create');
-        Route::get('/periode/edit/{id}', 'edit')->name('periode.edit');
-        Route::post('/periode/store', 'store')->name('periode.store');
-        Route::post('/periode/update/{id}', 'update')->name('periode.update');
-        Route::delete('/periode/destroy/{id}', 'destroy')->name('periode.destroy');
-    });
+    // Route::controller(PeriodeController::class)->group(function () {
+    //     Route::get('/periode', 'index')->name('periode.index');
+    //     Route::get('/periode/create', 'create')->name('periode.create');
+    //     Route::get('/periode/edit/{id}', 'edit')->name('periode.edit');
+    //     Route::post('/periode/store', 'store')->name('periode.store');
+    //     Route::post('/periode/update/{id}', 'update')->name('periode.update');
+    //     Route::delete('/periode/destroy/{id}', 'destroy')->name('periode.destroy');
+    // });
     Route::controller(SimpananController::class)->group(function () {
         Route::get('/simpanan', 'index')->name('simpanan.index');
+        Route::get('/simpanan/detail/{id}', 'show')->name('simpanan.detail');
         Route::get('/simpanan/create', 'create')->name('simpanan.create');
         Route::get('/simpanan/edit/{id}', 'edit')->name('simpanan.edit');
         Route::post('/simpanan/store', 'store')->name('simpanan.store');
         Route::post('/simpanan/update/{id}', 'update')->name('simpanan.update');
         Route::delete('/simpanan/destroy/{id}', 'destroy')->name('simpanan.destroy');
+
+        Route::get('/simpananpokok', 'indexpokok')->name('simpananpokok.index');
+        Route::get('/simpananpokok/create', 'createpokok')->name('simpananpokok.create');
+        Route::post('/simpananpokok/store', 'storepokok')->name('simpananpokok.store');
+        Route::delete('/simpananpokok/destroy/{id}', 'destroypokok')->name('simpananpokok.destroy');
+
+
+        Route::get('/simpananwajib', 'indexwajib')->name('simpananwajib.index');
+        Route::get('/simpananwajib/create', 'createwajib')->name('simpananwajib.create');
+        Route::post('/simpananwajib/store', 'storewajib')->name('simpananwajib.store');
+        Route::delete('/simpananwajib/destroy/{id}', 'destroywajib')->name('simpananwajib.destroy');
+
+
+        Route::get('/simpanankhusus', 'indexkhusus')->name('simpanankhusus.index');
+        Route::get('/simpanankhusus/create', 'createkhusus')->name('simpanankhusus.create');
+        Route::post('/simpanankhusus/store', 'storekhusus')->name('simpanankhusus.store');
+        Route::delete('/simpanankhusus/destroy/{id}', 'destroykhusus')->name('simpanankhusus.destroy');
     });
 
 

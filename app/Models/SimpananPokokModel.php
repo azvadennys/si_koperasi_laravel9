@@ -10,4 +10,9 @@ class SimpananPokokModel extends Model
     use HasFactory;
     protected $table = 'tb_simpanan_pokok';
     protected $guarded = NULL;
+    protected $with = ['anggota'];
+    public function anggota()
+    {
+        return $this->hasOne(AnggotaModel::class, 'id', 'id_anggota');
+    }
 }

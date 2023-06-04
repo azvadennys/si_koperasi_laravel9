@@ -1,4 +1,4 @@
-@extends('admin.layout', ['active' => __('simpanan')])
+@extends('admin.layout', ['active' => __('simpananpokok')])
 
 @section('content')
 
@@ -10,16 +10,13 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-lg-6 col-7">
-                            <h3 class="mb-0">Daftar Simpanan</h3>
+                            <h3 class="mb-0">Daftar Simpanan Pokok</h3>
                         </div>
-                        {{-- <div class="col-lg-6 col-5 my-auto text-end">
-                            <a href="{{ route('simpanan.create') }}"
-                                class=" btn btn-sm btn-primary p-2 btnTambah">Simpanan Wajib</a>
-                            <a href="{{ route('simpanan.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Simpanan
-                                Pokok</a>
-                            <a href="{{ route('simpanan.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Simpanan
-                                Khusus</a>
-                        </div> --}}
+                        <div class="col-lg-6 col-5 my-auto text-end">
+                            <a href="{{ route('simpananpokok.create') }}"
+                                class=" btn btn-sm btn-primary p-2 btnTambah">Tambah
+                                Simpanan Pokok</a>
+                        </div>
 
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -65,7 +62,8 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Total Saldo</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jumlah</th>
                                     <th class="text-right pr-6">Action</th>
                                 </tr>
                             </thead>
@@ -75,16 +73,7 @@
                                 $i = 1;
                                 @endphp
                                 @foreach ($akun as $key=> $index)
-                                @php
 
-                                $totalsimpanan = 0;
-                                $wajib = $index->simpananwajib->sum('jumlah');
-                                $pokok = $index->simpananpokok->sum('jumlah');
-                                $khusus = $index->simpanankhusus->sum('jumlah');
-
-                                $totalsimpanan += $wajib += $pokok += $khusus;
-
-                                @endphp
                                 <tr>
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
@@ -92,24 +81,32 @@
 
                                     </td>
                                     <td>
-                                        {{ $index->nama }}
+                                        {{ $index->anggota->nama }}
                                     </td>
                                     <td>
-                                        {{ $index->nip }}
+                                        {{ $index->anggota->nip }}
                                     </td>
                                     <td>
-                                        {{ $index->unit_kerja }}
+                                        {{ $index->anggota->unit_kerja }}
                                     </td>
                                     <td>
-                                        {{ $totalsimpanan }}
+                                        {{ $index->tanggal }}
+                                    </td>
+                                    <td>
+                                        {{ $index->jumlah }}
                                     </td>
 
                                     <td>
-                                        <div class="text-right">
+                                        {{-- <div class="text-right">
                                             <a href="{{ route('simpanan.detail',$index->id) }}"
                                                 class="btn btn-info btn-sm btnEdit">
                                                 Detail</a>
-                                        </div>
+                                        </div> --}}
+                                        <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
+                                            data-id="{{ $index->id }}">
+                                            Delete
+                                            <i class="typcn typcn-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
 
@@ -132,7 +129,7 @@
 
     @section('custom_html')
     @foreach ($akun as $index)
-    <form action="{{ route('simpanan.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
+    <form action="{{ route('simpananpokok.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
         @csrf
         @method('DELETE')
     </form>

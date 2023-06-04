@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_periode', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama', 50);
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_akhir');
-            $table->string('status', 15);
-            $table->timestamps();
-        });
+        // Schema::create('tb_periode', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('nama', 50);
+        //     $table->date('tanggal_mulai');
+        //     $table->date('tanggal_akhir');
+        //     $table->string('status', 15);
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_periode');
+        // Schema::dropIfExists('tb_periode');
     }
 };

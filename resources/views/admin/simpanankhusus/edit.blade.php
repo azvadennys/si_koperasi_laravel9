@@ -10,7 +10,7 @@
                 <div class="card z-index-0 fadeIn3 fadeInBottom mb-5">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Tambah Periode</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Edit Periode</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -21,25 +21,28 @@
                             @endforeach
                         </div>
                         @endif
-                        <form method="post" action="{{ route('periode.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('periode.update',$data->id) }}" autocomplete="off">
                             @csrf
                             <div class="input-group input-group-outline my-3 is-filled">
                                 <label class="form-label">Nama Periode</label>
-                                <input type="text" name='nama' class="form-control" required>
+                                <input type="text" name='nama' class="form-control" value="{{ $data->nama }}" required>
                             </div>
                             <div class="input-group input-group-outline my-3 is-filled">
                                 <label class="form-label">Tanggal Mulai</label>
-                                <input type="date" name='tanggal_mulai' class="form-control" required>
+                                <input type="date" name='tanggal_mulai' class="form-control"
+                                    value="{{ $data->tanggal_mulai }}" required>
                             </div>
                             <div class="input-group input-group-outline mb-3 is-filled">
                                 <label class="form-label">Tanggal Akhir</label>
-                                <input type="date" name='tanggal_akhir' class="form-control" required>
+                                <input type="date" name='tanggal_akhir' class="form-control"
+                                    value="{{ $data->tanggal_akhir }}" required>
                             </div>
                             <div class="input-group input-group-outline mb-3 is-filled">
                                 <select class="form-control" name='status' id="inputGroupSelect01" required>
                                     <option selected>Pilih Status</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
+                                    <option value="aktif" @if($data->status == 'aktif') selected @endif>Aktif</option>
+                                    <option value="tidak aktif" @if($data->status == 'tidak aktif') selected
+                                        @endif>Tidak Aktif</option>
                                 </select>
                             </div>
 

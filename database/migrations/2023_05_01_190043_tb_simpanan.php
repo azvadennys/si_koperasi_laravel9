@@ -20,6 +20,20 @@ return new class extends Migration
             $table->bigInteger('jumlah');
             $table->timestamps();
         });
+        Schema::create('tb_simpanan_wajib', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_anggota')->constrained('tb_anggota');
+            $table->date('tanggal');
+            $table->bigInteger('jumlah');
+            $table->timestamps();
+        });
+        Schema::create('tb_simpanan_khusus', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_anggota')->constrained('tb_anggota');
+            $table->date('tanggal');
+            $table->bigInteger('jumlah');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -88,7 +88,7 @@
                         <span class="nav-link-text ms-1">Anggota</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-white @if($active == 'periode') active bg-gradient-primary @endif"
                         href="{{ route('periode.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -96,7 +96,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Periode</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link text-white @if($active == 'simpanan') active bg-gradient-primary @endif"
                         href="{{ route('simpanan.index') }}">
@@ -104,6 +104,27 @@
                             <i class="material-icons opacity-10">supervised_user_circle</i>
                         </div>
                         <span class="nav-link-text ms-1">Simpanan</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white  @if($active == 'simpananpokok') active bg-gradient-primary @endif"
+                        href="{{ route('simpananpokok.index') }}">
+
+                        <span class="nav-link-text ms-1 ">Simpanan Pokok</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white  @if($active == 'simpananwajib') active bg-gradient-primary @endif"
+                        href="{{ route('simpananwajib.index') }}">
+
+                        <span class="nav-link-text ms-1 ">Simpanan Wajib</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white  @if($active == 'simpanankhusus') active bg-gradient-primary @endif"
+                        href="{{ route('simpanankhusus.index') }}">
+
+                        <span class="nav-link-text ms-1 ">Simpanan Khusus</span>
                     </a>
                 </li>
                 <li class="nav-item">
