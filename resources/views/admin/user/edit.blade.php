@@ -37,7 +37,7 @@
                                 <input type="password" name='password' class="form-control"
                                     placeholder="Kosongkan Jika tidak ingin ganti password">
                             </div>
-                            <div class="input-group input-group-outline mb-3 is-filled">
+                            {{-- <div class="input-group input-group-outline mb-3 is-filled">
                                 <select class="form-control" name='role' id="inputGroupSelect01" required>
                                     <option @if($data->role == NULL) selected @endif>Pilih Role</option>
                                     <option value="admin" @if($data->role == 'admin') selected @endif>Administrator
@@ -45,7 +45,7 @@
                                     <option value="user" @if($data->role == 'user') selected @endif>User Account
                                     </option>
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="text-center">
                                 <button type="submit"

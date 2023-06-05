@@ -128,8 +128,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white @if($active == 'transaksi') active bg-gradient-primary @endif"
-                        href="{{ route('transaksi.index') }}">
+                    <a class="nav-link text-white @if($active == 'peminjaman') active bg-gradient-primary @endif"
+                        href="{{ route('peminjaman.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">paid</i>
                         </div>
@@ -140,7 +140,7 @@
                     <a class="nav-link text-white @if($active == 'transaksi') active bg-gradient-primary @endif"
                         href="{{ route('transaksi.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">note</i>
                         </div>
                         <span class="nav-link-text ms-1">Laporan Simpanan</span>
                     </a>
@@ -149,12 +149,12 @@
                     <a class="nav-link text-white @if($active == 'transaksi') active bg-gradient-primary @endif"
                         href="{{ route('transaksi.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">note</i>
                         </div>
                         <span class="nav-link-text ms-1">Laporan Pinjaman</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-white @if($active == 'transaksi') active bg-gradient-primary @endif"
                         href="{{ route('transaksi.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -162,7 +162,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Simpanan Anggota</span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a class="nav-link text-white @if($active == 'report') active bg-gradient-primary @endif"
                         href="../pages/virtual-reality.html">

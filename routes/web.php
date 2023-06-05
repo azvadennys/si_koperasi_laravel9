@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SimpananController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\TbMobilController;
 use App\Http\Controllers\TbSupirController;
 use App\Http\Controllers\TbTransaksiController;
 use App\Http\Controllers\TbUser;
+use App\Models\PinjamanModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,7 +84,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/simpanankhusus/store', 'storekhusus')->name('simpanankhusus.store');
         Route::delete('/simpanankhusus/destroy/{id}', 'destroykhusus')->name('simpanankhusus.destroy');
     });
-
+    Route::controller(PeminjamanController::class)->group(function () {
+        Route::get('/peminjaman', 'index')->name('peminjaman.index');
+        Route::get('/peminjaman/create', 'create')->name('peminjaman.create');
+        Route::get('/peminjaman/edit/{id}', 'edit')->name('peminjaman.edit');
+        Route::post('/peminjaman/store', 'store')->name('peminjaman.store');
+        Route::post('/peminjaman/update/{id}', 'update')->name('peminjaman.update');
+        Route::delete('/peminjaman/destroy/{id}', 'destroy')->name('peminjaman.destroy');
+        Route::get('/peminjaman/bayar/{id}', 'bayar')->name('peminjaman.bayar');
+        Route::post('/peminjaman/bayar/store/{id}', 'bayarstore')->name('peminjaman.bayarstore');
+    });
 
     Route::controller(TbMobilController::class)->group(function () {
         Route::get('/mobil', 'index')->name('mobil.index');

@@ -46,7 +46,7 @@ class TbUser extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'email_verified_at' => now(),
-                'role' => $request->role,
+                // 'role' => $request->role,
                 'password' => Hash::make($request->password),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -96,7 +96,7 @@ class TbUser extends Controller
                 [
                     'name' => $request->name,
                     'email' => $request->email,
-                    'role' => $request->role,
+                    // 'role' => $request->role,
                     'password' => Hash::make($request->password),
                 ]
             );
@@ -105,7 +105,7 @@ class TbUser extends Controller
                 [
                     'name' => $request->name,
                     'email' => $request->email,
-                    'role' => $request->role,
+                    // 'role' => $request->role,
                 ]
             );
         }

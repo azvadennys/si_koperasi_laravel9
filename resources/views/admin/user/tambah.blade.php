@@ -35,13 +35,13 @@
                                 <label class="form-label">Password</label>
                                 <input type="password" name='password' class="form-control" required>
                             </div>
-                            <div class="input-group input-group-outline mb-3">
+                            {{-- <div class="input-group input-group-outline mb-3">
                                 <select class="form-control" name='role' id="inputGroupSelect01" required>
                                     <option selected>Pilih Role</option>
                                     <option value="admin">Administrator</option>
                                     <option value="user">User Account</option>
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="text-center">
                                 <button type="submit"

@@ -1,4 +1,4 @@
-@extends('admin.layout', ['active' => __('user')])
+@extends('admin.layout', ['active' => __('peminjaman')])
 
 @section('content')
 
@@ -10,11 +10,11 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-lg-6 col-7">
-                            <h3 class="mb-0">Daftar Akun</h3>
+                            <h3 class="mb-0">Daftar Peminjaman</h3>
                         </div>
                         <div class="col-lg-6 col-5 my-auto text-end">
-                            <a href="{{ route('user.create') }}" class=" btn btn-sm btn-primary p-2 btnTambah">Tambah
-                                Akun</a>
+                            <a href="{{ route('peminjaman.create') }}"
+                                class=" btn btn-sm btn-primary p-2 btnTambah">Tambah</a>
                         </div>
 
                     </div>
@@ -58,10 +58,13 @@
                                 <tr>
                                     {{-- <th scope="col">No</th> --}}
                                     <th class="text-center">NO</th>
-                                    <th scope="col">Nama Akun</th>
-                                    <th scope="col">Email</th>
-                                    {{-- <th scope="col">Role</th> --}}
-                                    {{-- <th scope="col">Hak Akses</th> --}}
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">NIP</th>
+                                    <th scope="col">Tanggal Peminjaman</th>
+                                    <th scope="col">Lama Peminjaman (Bln)</th>
+                                    <th scope="col">Jumlah Peminjaman</th>
+                                    <th scope="col">Angsuran Perbulan</th>
+                                    <th scope="col">Sisa Pinjaman</th>
                                     <th class="text-right pr-6">Action</th>
                                 </tr>
                             </thead>
@@ -71,55 +74,40 @@
                                 $i = 1;
                                 @endphp
                                 @foreach ($akun as $key=> $index)
-                                <?php if(auth()->user()->id == $index->id ){
-                  continue;
-                } ?>
 
                                 <tr>
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
 
-                                    </td>
-                                    <td>
-                                        {{ $index->name }}
-                                    </td>
-                                    <td>
-                                        {{ $index->email }}
-                                    </td>
-                                    {{-- <td>
-                                        @if ($index->role == 'user')
-                                        User Account
-                                        @elseif ($index->role == 'admin')
-                                        Administrator
-                                        @elseif ($index->role == 'superadmin')
-                                        Super Administrator
-                                        @endif
-                                        {{ $index->role }}
-                                    </td>
-                                    <td>
-                                        @if ($index->role == 'user')
-                                        Akses User
 
-                                        @else
-                                        Akses Administrator
-                                        @endif
-                                    </td> --}}
+                                    </td>
+                                    <td>
+                                        {{ $index->anggota->nama }}
+                                    </td>
+                                    <td>
+                                        {{ $index->anggota->nip }}
+                                    </td>
+                                    <td>
+                                        {{ $index->tanggal }}
+                                    </td>
+                                    <td>
+                                        {{ $index->lama_peminjaman }}
+                                    </td>
+                                    <td>
+                                        {{ $index->jumlah }}
+                                    </td>
+                                    <td>
+                                        {{ $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan }}
+                                    </td>
+                                    <td>
+                                        {{ $index->jumlah - $index->angsuran->sum('jumlah') }}
+                                    </td>
 
                                     <td>
                                         <div class="text-right">
-                                            <a href="{{ route('user.edit',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit"><i class="fa fa-edit"></i>
-                                                Edit</a>
-                                            {{-- <form method="POST" action="{{ route('user.destroy', $index->id) }}">
-                                                @csrf
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <a type="submit" class="btn btn-xs btn-danger btn-flat show_confirm"
-                                                    data-toggle="tooltip" title='Delete'>Delete</a>
-                                            </form> --}}
-                                            {{-- <a href="{{ route('user.destroy', $index->id) }}"
-                                                class="btn btn-danger btn-sm show_confirm" data-toggle="tooltip"
-                                                title='Delete'><i class="fa fa-trash"></i>
-                                                Delete</a> --}}
+                                            <a href="{{ route('peminjaman.bayar',$index->id) }}"
+                                                class="btn btn-success btn-sm btnEdit">
+                                                Bayar</a>
 
                                             <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
                                                 data-id="{{ $index->id }}">
@@ -150,7 +138,7 @@
 
     @section('custom_html')
     @foreach ($akun as $index)
-    <form action="{{ route('user.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
+    <form action="{{ route('peminjaman.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
         @csrf
         @method('DELETE')
     </form>
