@@ -1,4 +1,4 @@
-@extends('admin.layout', ['active' => __('simpanan')])
+@extends('admin.layout', ['active' => __('laporansimpanan')])
 
 @section('content')
 
@@ -8,18 +8,26 @@
             <div class="card shadow">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <div class="row">
-                        <div class="col-lg-6 col-7">
-                            <h3 class="mb-0">Daftar Simpanan</h3>
+                    <div class="row justify-content-between">
+                        <div class="col-lg-6 col-6">
+                            <h3 class="mb-0">Laporan Simpanan</h3>
                         </div>
-                        {{-- <div class="col-lg-6 col-5 my-auto text-end">
-                            <a href="{{ route('simpanan.create') }}"
-                                class=" btn btn-sm btn-primary p-2 btnTambah">Simpanan Wajib</a>
-                            <a href="{{ route('simpanan.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Simpanan
-                                Pokok</a>
-                            <a href="{{ route('simpanan.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Simpanan
-                                Khusus</a>
-                        </div> --}}
+
+                        <div class="col-lg-2 col-5 my-auto ">
+                            <div class="dropdown">
+                                <button class="btn bg-gradient-success dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Download
+                                    Excel
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach($tahun as $index)
+                                    <a class="dropdown-item" href="{{ route('laporansimpanan.excel',$index->year) }}">{{
+                                        $index->year }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -65,8 +73,10 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Unit Kerja</th>
+                                    <th scope="col">Simpanan Wajib</th>
+                                    <th scope="col">Simpanan Pokok</th>
+                                    <th scope="col">Simpanan Khusus</th>
                                     <th scope="col">Total Saldo</th>
-                                    <th class="text-right pr-6">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,15 +111,16 @@
                                         {{ $index->unit_kerja }}
                                     </td>
                                     <td>
-                                        {{ $totalsimpanan }}
+                                        {{ $wajib }}
                                     </td>
-
                                     <td>
-                                        <div class="text-right">
-                                            <a href="{{ route('simpanan.detail',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit">
-                                                Detail</a>
-                                        </div>
+                                        {{ $pokok }}
+                                    </td>
+                                    <td>
+                                        {{ $khusus }}
+                                    </td>
+                                    <td>
+                                        {{ $totalsimpanan }}
                                     </td>
                                 </tr>
 

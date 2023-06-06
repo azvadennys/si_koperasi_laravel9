@@ -56,7 +56,7 @@
                     <div class="table-responsive">
                         <table class="table align-items-center table-hover" id="" style="width: 100%">
                             <thead class="thead-light">
-                                <tr>
+                                <tr class="text-center">
                                     {{-- <th scope="col">No</th> --}}
                                     <th class="text-center">NO</th>
                                     <th scope="col">Nama</th>
@@ -74,7 +74,7 @@
                                 @endphp
                                 @foreach ($akun as $key=> $index)
 
-                                <tr>
+                                <tr class="text-center">
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
 
