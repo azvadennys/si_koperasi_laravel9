@@ -95,32 +95,32 @@
                                 $totalsimpanan += $wajib += $pokok += $khusus;
 
                                 @endphp
-                                <tr class="text-center">
+                                <tr>
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
 
 
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{ $index->nama }}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{ $index->nip }}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{ $index->unit_kerja }}
                                     </td>
-                                    <td>
-                                        {{ $wajib }}
+                                    <td class="text-end px-5">
+                                        {{ 'Rp ' . number_format($wajib, 0, ',', '.') }}
                                     </td>
-                                    <td>
-                                        {{ $pokok }}
+                                    <td class="text-end px-5">
+                                        {{ 'Rp ' . number_format($pokok, 0, ',', '.') }}
                                     </td>
-                                    <td>
-                                        {{ $khusus }}
+                                    <td class="text-end px-5">
+                                        {{ 'Rp ' . number_format($khusus, 0, ',', '.') }}
                                     </td>
-                                    <td>
-                                        {{ $totalsimpanan }}
+                                    <td class="text-end px-5">
+                                        {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
                                     </td>
                                 </tr>
 

@@ -35,17 +35,73 @@
     </table>
     <table>
         <thead>
-            <tr>
-                <th align="center">KODE JABATAN</th>
-                <th align="center">JABATAN</th>
-                <th align="center">JENJANG JABATAN</th>
-                <th align="center">KELAS JABATAN</th>
-                <th align="center">BAZETING</th>
-                <th align="center">FORMASI / ABK</th>
-                <th align="center">KET. +/-</th>
+            <tr class="text-center">
+                <th align="center">NO</th>
+                <th align="center">NAMA / NIP</th>
+                <th align="center">UNIT KERJA</th>
+                <th align="center">SIMPANAN S/D DESEMBER {{ $tahun -1 }}</th>
+                <th align="center">SIMPANAN POKOK</th>
+                <th align="center">SIMPANAN WAJIB</th>
+                <th align="center">SIMPANAN KHUSUS</th>
+                <th align="center">TOTAL SIMPANAN</th>
             </tr>
         </thead>
         <tbody>
+            @php
+            $tahunsebelum = $tahun-1;
+            $indexke = 0;
+            $no = 1;
+            @endphp
+            @foreach ($akun as $index)
+            @php
+            $totalsimpanan = 0;
+            $wajib = $index->simpananwajib->sum('jumlah');
+            $pokok = $index->simpananpokok->sum('jumlah');
+            $khusus = $index->simpanankhusus->sum('jumlah');
+
+            $totalsimpanan += $wajib;
+            $totalsimpanan += $pokok;
+            $totalsimpanan += $khusus;
+
+            $totalsimpanansebelum = 0;
+            $wajibsebelum = $akunsebelum[$indexke]->simpananwajib->sum('jumlah');
+
+            $pokoksebelum = $akunsebelum[$indexke]->simpananpokok->sum('jumlah');
+
+            $khusussebelum = $akunsebelum[$indexke]->simpanankhusus->sum('jumlah');
+
+            $totalsimpanansebelum += $wajibsebelum;
+            $totalsimpanansebelum += $pokoksebelum;
+            $totalsimpanansebelum += $khusussebelum;
+            $indexke++;
+            @endphp
+            <tr class="text-center">
+                <td align="center">
+                    {{ $no++ }}
+                </td>
+                <td align="center">
+                    {{ $index->nama }}<br>NIP {{ $index->nip }}
+                </td>
+                <td align="center">
+                    {{ $index->unit_kerja }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($totalsimpanansebelum, 0, ',', '.') }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($wajib, 0, ',', '.') }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($pokok, 0, ',', '.') }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($khusus, 0, ',', '.') }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($totalsimpanan + $totalsimpanansebelum, 0, ',', '.')}}
+                </td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

@@ -92,8 +92,8 @@
                                     <td>
                                         {{ $index->tanggal }}
                                     </td>
-                                    <td>
-                                        {{ $index->jumlah }}
+                                    <td class="text-end mx-5">
+                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
                                     </td>
 
                                     <td>

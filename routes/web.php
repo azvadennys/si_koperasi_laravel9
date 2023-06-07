@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/laporansimpanan', 'indexsimpanan')->name('laporansimpanan.index');
         Route::get('/laporansimpanan/excel/{id}', 'indexsimpananexcel')->name('laporansimpanan.excel');
         Route::get('/laporanpinjaman', 'indexpinjaman')->name('laporanpinjaman.index');
+        Route::get('/laporanpinjaman/excel/{jenis}', 'indexpinjamanexcel')->name('laporanpinjaman.excel');
     });
 
     // Route::controller(TbMobilController::class)->group(function () {

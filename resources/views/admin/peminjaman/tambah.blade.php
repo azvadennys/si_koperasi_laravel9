@@ -84,7 +84,19 @@
 function myFunction() {
   var x = document.getElementById("bunga");
   var y = document.getElementById("jumlah");
-  x.value = y.value *0.02;
+
+  let number = y.value *0.02;
+
+// Divide by 1000
+let result = number / 10;
+
+// Round up to the nearest integer
+    result =  Math.ceil(result);
+
+// Multiply by 1000
+result = result * 10;
+
+  x.value = result;
 }
 </script>
 @endpush

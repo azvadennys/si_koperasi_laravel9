@@ -100,8 +100,9 @@
                                     <td>
                                         {{ $index->unit_kerja }}
                                     </td>
-                                    <td>
-                                        {{ $totalsimpanan }}
+
+                                    <td class="text-end mx-5">
+                                        {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
                                     </td>
 
                                     <td>

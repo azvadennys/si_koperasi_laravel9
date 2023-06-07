@@ -74,7 +74,19 @@
                                 $i = 1;
                                 @endphp
                                 @foreach ($akun as $key=> $index)
+                                @php
+                                $number = $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan;
 
+                                // Divide by 1000
+                                $perbulan = $number / 10;
+
+                                // Round up to the nearest integer
+                                $perbulan = ceil($perbulan);
+
+                                // Multiply by 1000
+                                $perbulan = $perbulan * 10;
+                                
+                                @endphp
                                 <tr class="text-center">
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
@@ -94,13 +106,14 @@
                                         {{ $index->lama_peminjaman }}
                                     </td>
                                     <td>
-                                        {{ $index->jumlah }}
+                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
                                     </td>
                                     <td>
-                                        {{ $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan }}
+                                        {{ 'Rp ' . number_format($perbulan, 0, ',', '.') }}
                                     </td>
                                     <td>
-                                        {{ $index->jumlah - $index->angsuran->sum('jumlah') }}
+                                        {{ 'Rp ' . number_format($index->jumlah - $index->angsuran->sum('jumlah'), 0,
+                                        ',', '.') }}
                                     </td>
 
                                     <td>

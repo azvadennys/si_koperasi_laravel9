@@ -1,4 +1,4 @@
-@extends('admin.layout', ['active' => __('simpanankhusus')])
+@extends('admin.layout', ['active' => __('laporanpinjaman')])
 
 @section('content')
 
@@ -8,14 +8,27 @@
             <div class="card shadow">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <div class="row">
-                        <div class="col-lg-6 col-7">
-                            <h3 class="mb-0">Daftar Simpanan Khusus</h3>
+                    <div class="row justify-content-between">
+                        <div class="col-lg-6 col-6">
+                            <h3 class="mb-0">Laporan Peminjaman</h3>
                         </div>
-                        <div class="col-lg-6 col-5 my-auto text-end">
-                            <a href="{{ route('simpanankhusus.create') }}"
-                                class=" btn btn-sm btn-primary p-2 btnTambah">Tambah
-                                Simpanan Khusus</a>
+
+                        <div class="col-lg-2 col-5 my-auto ">
+                            <div class="dropdown">
+                                <button class="btn bg-gradient-success dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Download
+                                    Excel
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                    <a class="dropdown-item" href="{{ route('laporanpinjaman.excel','TPP') }}">Sumber
+                                        Dana TPP</a>
+                                    <a class="dropdown-item" href="{{ route('laporanpinjaman.excel','Gaji') }}">Sumber
+                                        Dana GAJI</a>
+
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -62,9 +75,11 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Jumlah</th>
-                                    <th class="text-right pr-6">Action</th>
+                                    <th scope="col">Tanggal Pinjaman</th>
+                                    <th scope="col">Lama Peminjaman (Bln)</th>
+                                    <th scope="col">Jumlah Peminjaman</th>
+                                    <th scope="col">Angsuran Perbulan</th>
+                                    <th scope="col">Sisa Pinjaman</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,7 +88,19 @@
                                 $i = 1;
                                 @endphp
                                 @foreach ($akun as $key=> $index)
+                                @php
+                                $number = $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan;
 
+                                // Divide by 1000
+                                $perbulan = $number / 10;
+
+                                // Round up to the nearest integer
+                                $perbulan = ceil($perbulan);
+
+                                // Multiply by 1000
+                                $perbulan = $perbulan * 10;
+
+                                @endphp
                                 <tr class="text-center">
                                     <td class="text-center">
                                         {{ $key+ $akun->firstItem() }}
@@ -90,23 +117,20 @@
                                         {{ $index->anggota->unit_kerja }}
                                     </td>
                                     <td>
-                                        {{ $index->tanggal }}
+                                        {{ date("d M Y", strtotime($index->tanggal)) }}
                                     </td>
-                                    <td class="text-end mx-5">
+                                    <td>
+                                        {{ $index->lama_peminjaman }}
+                                    </td>
+                                    <td>
                                         {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
                                     </td>
-
                                     <td>
-                                        {{-- <div class="text-right">
-                                            <a href="{{ route('simpanan.detail',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit">
-                                                Detail</a>
-                                        </div> --}}
-                                        <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
-                                            data-id="{{ $index->id }}">
-                                            Delete
-                                            <i class="typcn typcn-trash"></i>
-                                        </a>
+                                        {{ 'Rp ' . number_format($perbulan, 0, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ 'Rp ' . number_format($index->jumlah - $index->angsuran->sum('jumlah'), 0,
+                                        ',', '.') }}
                                     </td>
                                 </tr>
 
@@ -129,7 +153,7 @@
 
     @section('custom_html')
     @foreach ($akun as $index)
-    <form action="{{ route('simpanankhusus.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
+    <form action="{{ route('simpanan.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
         @csrf
         @method('DELETE')
     </form>

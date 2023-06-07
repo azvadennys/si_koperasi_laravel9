@@ -31,14 +31,26 @@
                                     class="form-control" disabled>
                             </div>
                             <div class="input-group input-group-static mb-4">
-                                <label>Tanggal Peminjaman</label>
+                                <label>Tanggal Pembayaran</label>
                                 <input type="date" name='tanggal' class="form-control" required>
                             </div>
+                            @php
+                            $number = $peminjaman->jumlah / $peminjaman->lama_peminjaman + $peminjaman->bunga_perbulan;
+
+                            // Divide by 1000
+                            $perbulan = $number / 10;
+
+                            // Round up to the nearest integer
+                            $perbulan = ceil($perbulan);
+
+                            // Multiply by 1000
+                            $perbulan = $perbulan * 10;
+
+                            @endphp
                             <div class="input-group input-group-static mb-4">
                                 <label>Jumlah</label>
                                 <input type="number" name='jumlah' id="jumlah" class="form-control"
-                                    value="{{ $peminjaman->jumlah / $peminjaman->lama_peminjaman + $peminjaman->bunga_perbulan }}"
-                                    required placeholder="Masukkan Jumlah">
+                                    value="{{ $perbulan }}" required placeholder="Masukkan Jumlah">
                             </div>
 
                             <div class="text-center">

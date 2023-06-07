@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\AnggotaModel;
+use App\Models\PinjamanModel;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -19,7 +20,7 @@ use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Style\Borders;
 
-class SimpananExport implements FromView, ShouldAutoSize, WithStyles, WithDefaultStyles
+class PinjamanExport implements FromView, ShouldAutoSize, WithStyles, WithDefaultStyles
 {
     private $id;
 
@@ -60,33 +61,18 @@ class SimpananExport implements FromView, ShouldAutoSize, WithStyles, WithDefaul
 
     public function view(): View
     {
-        $tahunsebelum = $this->id - 1;
-        $tahun = $this->id;
-        $index = AnggotaModel::with(['simpananpokok' => function ($query) use ($tahun) {
-            $query->whereYear('tanggal', '=', $tahun);
-        }, 'simpananwajib' => function ($query) use ($tahun) {
-            $query->whereYear('tanggal', '=', $tahun);
-        }, 'simpanankhusus' => function ($query) use ($tahun) {
-            $query->whereYear('tanggal', '=', $tahun);
-        }])->orderby('nama', 'asc')->get();
-
-        $indexsebelum = AnggotaModel::with(['simpananpokok' => function ($query) use ($tahunsebelum) {
-            $query->whereYear('tanggal', '<=', $tahunsebelum);
-        }, 'simpananwajib' => function ($query) use ($tahunsebelum) {
-            $query->whereYear('tanggal', '<=', $tahunsebelum);
-        }, 'simpanankhusus' => function ($query) use ($tahunsebelum) {
-            $query->whereYear('tanggal', '<=', $tahunsebelum);
-        }])->orderby('nama', 'asc')->get();
-
-        // dd($indexsebelum);
+        $jenis = $this->id;
+        $index = PinjamanModel::with('angsuran')->join('tb_anggota', 'tb_anggota.id', '=', 'tb_pinjaman.id_anggota')
+            ->orderBy('tb_anggota.nama', 'asc')
+            ->select('tb_pinjaman.*')->where('tb_pinjaman.sumber_dana', $jenis)->get();
+        // dd($index);
         $data = [
             'akun' => $index,
-            'tahun' => $this->id,
-            'akunsebelum' => $indexsebelum,
+            'jenis' => $jenis
         ];
 
         // dd($data['akun']);
-        return view('admin.laporan.excelsimpanan', $data);
+        return view('admin.laporan.excelpinjaman', $data);
         // return view('admin.laporan.excelsimpanan', [
         //     'jabatan' => $jabatan
         // ]);
