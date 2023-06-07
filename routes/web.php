@@ -10,7 +10,11 @@ use App\Http\Controllers\TbMobilController;
 use App\Http\Controllers\TbSupirController;
 use App\Http\Controllers\TbTransaksiController;
 use App\Http\Controllers\TbUser;
+use App\Models\AnggotaModel;
 use App\Models\PinjamanModel;
+use App\Models\SimpananKhususModel;
+use App\Models\SimpananPokokModel;
+use App\Models\SimpananWajibModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +34,25 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    $pinjaman = PinjamanModel::get();
+    if ($pinjaman->count() > 0) {
+        foreach ($pinjaman as $index) {
+            $totalpinjaman = $index->jumlah + ($index->jumlah * 0.02 * $index->lama_peminjaman);
+        };
+    } else {
+        $totalpinjaman = 0;
+    }
+
+    $data = [
+        'simpananpokok' => SimpananPokokModel::sum('jumlah'),
+        'simpananwajib' => SimpananWajibModel::sum('jumlah'),
+        'simpanankhusus' => SimpananKhususModel::sum('jumlah'),
+        'anggota' => AnggotaModel::count(),
+        'sisapinjaman' => PinjamanModel::join('tb_angsuran', 'tb_angsuran.id', '=', 'tb_pinjaman.id_anggota')->sum('tb_angsuran.jumlah'),
+        'pinjaman' => $totalpinjaman,
+
+    ];
+    return view('admin.dashboard', $data);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

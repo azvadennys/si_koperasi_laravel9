@@ -13,7 +13,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
-                        <h4 class="mb-0">$53k</h4>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($simpananpokok, 0, ',', '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
-                        <h4 class="mb-0">2,300</h4>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($simpananwajib, 0, ',', '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
-                        <h4 class="mb-0">3,462</h4>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($simpanankhusus, 0, ',', '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -67,7 +67,8 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
-                        <h4 class="mb-0">$103,430</h4>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($simpananpokok+$simpananwajib+$simpanankhusus, 0, ',',
+                            '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -85,7 +86,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
-                        <h4 class="mb-0">$103,430</h4>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($pinjaman-$sisapinjaman, 0, ',', '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -103,7 +104,7 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">JUMLAH ANGGOTA</p>
-                        <h4 class="mb-0">$103,430</h4>
+                        <h4 class="mb-0">{{ $anggota }} Anggota</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
