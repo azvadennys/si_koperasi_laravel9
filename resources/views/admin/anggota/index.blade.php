@@ -54,78 +54,80 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Tanggal Daftar</th>
-                                    <th scope="col">No Telepon</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Status</th>
-                                    <th class="text-right pr-6">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Tanggal Daftar</th>
+                                        <th scope="col">No Telepon</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Status</th>
+                                        <th class="text-right pr-6">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun as $key=> $index)
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun as $key=> $index)
 
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
-
-
-                                    </td>
-                                    <td>
-                                        {{ $index->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->unit_kerja }}
-                                    </td>
-                                    <td>
-                                        {{ date("d M Y", strtotime($index->tanggal)) }}
-                                    </td>
-                                    <td>
-                                        {{ $index->no_telepon }}
-                                    </td>
-                                    <td>
-                                        {{ $index->alamat }}
-                                    </td>
-                                    <td>
-                                        {{ $index->status }}
-                                    </td>
-
-                                    <td>
-                                        <div class="text-right">
-                                            <a href="{{ route('anggota.edit',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit"><i class="fa fa-edit"></i>
-                                                Edit</a>
-
-                                            <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
-                                                data-id="{{ $index->id }}">
-                                                Delete
-                                                <i class="typcn typcn-trash"></i>
-                                            </a>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td>
+                                            {{ $index->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->unit_kerja }}
+                                        </td>
+                                        <td>
+                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                        </td>
+                                        <td>
+                                            {{ $index->no_telepon }}
+                                        </td>
+                                        <td>
+                                            {{ $index->alamat }}
+                                        </td>
+                                        <td>
+                                            {{ $index->status }}
+                                        </td>
+
+                                        <td>
+                                            <div class="text-right">
+                                                <a href="{{ route('anggota.edit',$index->id) }}"
+                                                    class="btn btn-info btn-sm btnEdit"><i class="fa fa-edit"></i>
+                                                    Edit</a>
+
+                                                <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
+                                                    data-id="{{ $index->id }}">
+                                                    Delete
+                                                    <i class="typcn typcn-trash"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

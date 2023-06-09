@@ -31,7 +31,7 @@ class PeminjamanController extends Controller
     public function create()
     {
         $data = [
-            'anggota' => AnggotaModel::all(),
+            'anggota' => AnggotaModel::orderby('nama', 'asc')->get(),
         ];
         return view('admin.peminjaman.tambah', $data);
     }

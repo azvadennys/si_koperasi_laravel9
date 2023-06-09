@@ -52,91 +52,94 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Tanggal Peminjaman</th>
-                                    <th scope="col">Lama Peminjaman (Bln)</th>
-                                    <th scope="col">Jumlah Peminjaman</th>
-                                    <th scope="col">Angsuran Perbulan</th>
-                                    <th scope="col">Sisa Pinjaman</th>
-                                    <th class="text-right pr-6">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Tanggal Peminjaman</th>
+                                        <th scope="col">Lama Peminjaman (Bln)</th>
+                                        <th scope="col">Jumlah Peminjaman</th>
+                                        <th scope="col">Angsuran Perbulan</th>
+                                        <th scope="col">Sisa Pinjaman</th>
+                                        <th class="text-right pr-6">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun as $key=> $index)
-                                @php
-                                $number = $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan;
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun as $key=> $index)
+                                    @php
+                                    $number = $index->jumlah / $index->lama_peminjaman + $index->bunga_perbulan;
 
-                                // Divide by 1000
-                                $perbulan = $number / 10;
+                                    // Divide by 1000
+                                    $perbulan = $number / 10;
 
-                                // Round up to the nearest integer
-                                $perbulan = ceil($perbulan);
+                                    // Round up to the nearest integer
+                                    $perbulan = ceil($perbulan);
 
-                                // Multiply by 1000
-                                $perbulan = $perbulan * 10;
+                                    // Multiply by 1000
+                                    $perbulan = $perbulan * 10;
 
-                                @endphp
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
-
-
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->tanggal }}
-                                    </td>
-                                    <td>
-                                        {{ $index->lama_peminjaman }}
-                                    </td>
-                                    <td>
-                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
-                                    </td>
-                                    <td>
-                                        {{ 'Rp ' . number_format($perbulan, 0, ',', '.') }}
-                                    </td>
-                                    <td>
-                                        {{ 'Rp ' . number_format($index->jumlah - $index->angsuran->sum('jumlah'), 0,
-                                        ',', '.') }}
-                                    </td>
-
-                                    <td>
-                                        <div class="text-right">
-                                            <a href="{{ route('peminjaman.bayar',$index->id) }}"
-                                                class="btn btn-success btn-sm btnEdit">
-                                                Bayar</a>
-
-                                            <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
-                                                data-id="{{ $index->id }}">
-                                                Delete
-                                                <i class="typcn typcn-trash"></i>
-                                            </a>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                    @endphp
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->tanggal }}
+                                        </td>
+                                        <td>
+                                            {{ $index->lama_peminjaman }}
+                                        </td>
+                                        <td>
+                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                        </td>
+                                        <td>
+                                            {{ 'Rp ' . number_format($perbulan, 0, ',', '.') }}
+                                        </td>
+                                        <td>
+                                            {{ 'Rp ' . number_format($index->jumlah - $index->angsuran->sum('jumlah'),
+                                            0,
+                                            ',', '.') }}
+                                        </td>
+
+                                        <td>
+                                            <div class="text-right">
+                                                <a href="{{ route('peminjaman.bayar',$index->id) }}"
+                                                    class="btn btn-success btn-sm btnEdit">
+                                                    Bayar</a>
+
+                                                <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
+                                                    data-id="{{ $index->id }}">
+                                                    Delete
+                                                    <i class="typcn typcn-trash"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

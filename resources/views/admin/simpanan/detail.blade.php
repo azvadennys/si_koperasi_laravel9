@@ -47,56 +47,58 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10 col-10 ">
+                            <table id="table_id" class="display table align-items-center table-hover " id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun->simpanankhusus as $key=> $index)
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun->simpanankhusus as $key=> $index)
 
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
-
-
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->unit_kerja }}
-                                    </td>
-                                    <td>
-                                        {{ date("d M Y", strtotime($index->tanggal)) }}
-                                    </td>
-                                    <td class="text-end mx-5">
-                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
-                                    </td>
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                </tr>
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->unit_kerja }}
+                                        </td>
+                                        <td>
+                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                        </td>
+                                        <td class="text-end mx-5">
+                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                        </td>
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -149,56 +151,59 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun->simpananwajib as $key=> $index)
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id2" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun->simpananwajib as $key=> $index)
 
-
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->unit_kerja }}
-                                    </td>
-                                    <td>
-                                        {{ date("d M Y", strtotime($index->tanggal)) }}
-                                    </td>
-                                    <td class="text-end mx-5">
-                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
-                                    </td>
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                </tr>
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->unit_kerja }}
+                                        </td>
+                                        <td>
+                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                        </td>
+                                        <td class="text-end mx-5">
+                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                        </td>
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -251,56 +256,59 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun->simpananpokok as $key=> $index)
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id3" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun->simpananpokok as $key=> $index)
 
-
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->anggota->unit_kerja }}
-                                    </td>
-                                    <td>
-                                        {{ date("d M Y", strtotime($index->tanggal)) }}
-                                    </td>
-                                    <td class="text-end mx-5">
-                                        {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
-                                    </td>
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                </tr>
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->unit_kerja }}
+                                        </td>
+                                        <td>
+                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                        </td>
+                                        <td class="text-end mx-5">
+                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                        </td>
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -325,7 +333,8 @@
 
     @push('custom_js')
     <script type="text/javascript"
-        src="https://cdn.datatables.net/v/dt/dt-1.13.1/cr-1.6.1/r-2.4.0/sc-2.0.7/sb-1.4.0/datatables.min.js"></script>
+        src="https://cdn.datatables.net/v/dt/dt-1.13.1/cr-1.6.1/r-2.4.0/sc-2.0.7/sb-1.4.0/datatables.min.js">
+    </script>
     <script>
         let removeBtns = document.querySelectorAll('.remove-btn');
         removeBtns.forEach(btn => {

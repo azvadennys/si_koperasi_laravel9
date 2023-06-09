@@ -56,69 +56,71 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr class="text-center">
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">Unit Kerja</th>
-                                    <th scope="col">Total Saldo</th>
-                                    <th class="text-right pr-6">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Total Saldo</th>
+                                        <th class="text-right pr-6">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun as $key=> $index)
-                                @php
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun as $key=> $index)
+                                    @php
 
-                                $totalsimpanan = 0;
-                                $wajib = $index->simpananwajib->sum('jumlah');
-                                $pokok = $index->simpananpokok->sum('jumlah');
-                                $khusus = $index->simpanankhusus->sum('jumlah');
+                                    $totalsimpanan = 0;
+                                    $wajib = $index->simpananwajib->sum('jumlah');
+                                    $pokok = $index->simpananpokok->sum('jumlah');
+                                    $khusus = $index->simpanankhusus->sum('jumlah');
 
-                                $totalsimpanan += $wajib += $pokok += $khusus;
+                                    $totalsimpanan += $wajib += $pokok += $khusus;
 
-                                @endphp
-                                <tr class="text-center">
-                                    <td class="text-center">
-                                        {{ $i++ }}
-
-
-                                    </td>
-                                    <td>
-                                        {{ $index->nama }}
-                                    </td>
-                                    <td>
-                                        {{ $index->nip }}
-                                    </td>
-                                    <td>
-                                        {{ $index->unit_kerja }}
-                                    </td>
-
-                                    <td class="text-end mx-5">
-                                        {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
-                                    </td>
-
-                                    <td>
-                                        <div class="text-right">
-                                            <a href="{{ route('simpanan.detail',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit">
-                                                Detail</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    @endphp
+                                    <tr class="text-center">
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td>
+                                            {{ $index->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->unit_kerja }}
+                                        </td>
+
+                                        <td class="text-end mx-5">
+                                            {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
+                                        </td>
+
+                                        <td>
+                                            <div class="text-right">
+                                                <a href="{{ route('simpanan.detail',$index->id) }}"
+                                                    class="btn btn-info btn-sm btnEdit">
+                                                    Detail</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

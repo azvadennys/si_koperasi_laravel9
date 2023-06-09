@@ -52,90 +52,93 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table id="table_id" class="display table align-items-center table-hover" id=""
-                            style="width: 100%">
-                            <thead class="thead-light">
-                                <tr>
-                                    {{-- <th scope="col">No</th> --}}
-                                    <th class="text-center">NO</th>
-                                    <th scope="col">Nama Akun</th>
-                                    <th scope="col">Email</th>
-                                    {{-- <th scope="col">Role</th> --}}
-                                    {{-- <th scope="col">Hak Akses</th> --}}
-                                    <th class="text-right pr-6">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
+                                    <tr>
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama Akun</th>
+                                        <th scope="col">Email</th>
+                                        {{-- <th scope="col">Role</th> --}}
+                                        {{-- <th scope="col">Hak Akses</th> --}}
+                                        <th class="text-right pr-6">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
 
-                                $i = 1;
-                                @endphp
-                                @foreach ($akun as $key=> $index)
-                                <?php if(auth()->user()->id == $index->id ){
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun as $key=> $index)
+                                    <?php if(auth()->user()->id == $index->id ){
                   continue;
                 } ?>
 
-                                <tr>
-                                    <td class="text-center">
-                                        {{ $i++ }}
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ $i++ }}
 
-                                    </td>
-                                    <td>
-                                        {{ $index->name }}
-                                    </td>
-                                    <td>
-                                        {{ $index->email }}
-                                    </td>
-                                    {{-- <td>
-                                        @if ($index->role == 'user')
-                                        User Account
-                                        @elseif ($index->role == 'admin')
-                                        Administrator
-                                        @elseif ($index->role == 'superadmin')
-                                        Super Administrator
-                                        @endif
-                                        {{ $index->role }}
-                                    </td>
-                                    <td>
-                                        @if ($index->role == 'user')
-                                        Akses User
+                                        </td>
+                                        <td>
+                                            {{ $index->name }}
+                                        </td>
+                                        <td>
+                                            {{ $index->email }}
+                                        </td>
+                                        {{-- <td>
+                                            @if ($index->role == 'user')
+                                            User Account
+                                            @elseif ($index->role == 'admin')
+                                            Administrator
+                                            @elseif ($index->role == 'superadmin')
+                                            Super Administrator
+                                            @endif
+                                            {{ $index->role }}
+                                        </td>
+                                        <td>
+                                            @if ($index->role == 'user')
+                                            Akses User
 
-                                        @else
-                                        Akses Administrator
-                                        @endif
-                                    </td> --}}
+                                            @else
+                                            Akses Administrator
+                                            @endif
+                                        </td> --}}
 
-                                    <td>
-                                        <div class="text-right">
-                                            <a href="{{ route('user.edit',$index->id) }}"
-                                                class="btn btn-info btn-sm btnEdit"><i class="fa fa-edit"></i>
-                                                Edit</a>
-                                            {{-- <form method="POST" action="{{ route('user.destroy', $index->id) }}">
-                                                @csrf
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <a type="submit" class="btn btn-xs btn-danger btn-flat show_confirm"
-                                                    data-toggle="tooltip" title='Delete'>Delete</a>
-                                            </form> --}}
-                                            {{-- <a href="{{ route('user.destroy', $index->id) }}"
-                                                class="btn btn-danger btn-sm show_confirm" data-toggle="tooltip"
-                                                title='Delete'><i class="fa fa-trash"></i>
-                                                Delete</a> --}}
+                                        <td>
+                                            <div class="text-right">
+                                                <a href="{{ route('user.edit',$index->id) }}"
+                                                    class="btn btn-info btn-sm btnEdit"><i class="fa fa-edit"></i>
+                                                    Edit</a>
+                                                {{-- <form method="POST"
+                                                    action="{{ route('user.destroy', $index->id) }}">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <a type="submit" class="btn btn-xs btn-danger btn-flat show_confirm"
+                                                        data-toggle="tooltip" title='Delete'>Delete</a>
+                                                </form> --}}
+                                                {{-- <a href="{{ route('user.destroy', $index->id) }}"
+                                                    class="btn btn-danger btn-sm show_confirm" data-toggle="tooltip"
+                                                    title='Delete'><i class="fa fa-trash"></i>
+                                                    Delete</a> --}}
 
-                                            <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
-                                                data-id="{{ $index->id }}">
-                                                Delete
-                                                <i class="typcn typcn-trash"></i>
-                                            </a>
+                                                <a href="#" class="btn remove-btn btn-danger btn-sm btn-icon-text"
+                                                    data-id="{{ $index->id }}">
+                                                    Delete
+                                                    <i class="typcn typcn-trash"></i>
+                                                </a>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
