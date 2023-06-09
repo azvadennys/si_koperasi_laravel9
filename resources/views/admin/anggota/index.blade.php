@@ -15,7 +15,8 @@
                         <div class="col-lg-6 col-5 my-auto text-end">
                             <a href="{{ route('anggota.create') }}"
                                 class=" btn btn-sm btn-primary p-2 btnTambah">Tambah</a>
-                            <a href="{{ route('anggota.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Cetak</a>
+                            <a href="{{ route('laporananggota.excel') }}"
+                                class=" btn btn-sm btn-success p-2 btnTambah">Cetak Excel</a>
                         </div>
 
                     </div>
@@ -54,7 +55,8 @@
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-hover" id="" style="width: 100%">
+                        <table id="table_id" class="display table align-items-center table-hover" id=""
+                            style="width: 100%">
                             <thead class="thead-light">
                                 <tr class="text-center">
                                     {{-- <th scope="col">No</th> --}}
@@ -78,7 +80,7 @@
 
                                 <tr class="text-center">
                                     <td class="text-center">
-                                        {{ $key+ $akun->firstItem() }}
+                                        {{ $i++ }}
 
 
                                     </td>
@@ -92,7 +94,7 @@
                                         {{ $index->unit_kerja }}
                                     </td>
                                     <td>
-                                        {{ $index->tanggal }}
+                                        {{ date("d M Y", strtotime($index->tanggal)) }}
                                     </td>
                                     <td>
                                         {{ $index->no_telepon }}
@@ -128,7 +130,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-start">
-                        {{ $akun->onEachSide(1)->links() }}
+
                     </div>
                 </div>
             </div>

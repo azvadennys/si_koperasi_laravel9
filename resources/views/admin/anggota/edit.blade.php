@@ -55,8 +55,8 @@
                             <div class="input-group input-group-outline mb-3 is-filled">
                                 <select class="form-control" name='status' id="inputGroupSelect01" required>
                                     <option selected>Pilih Status</option>
-                                    <option value="aktif" @if($data->status == 'aktif') selected @endif>Aktif</option>
-                                    <option value="tidak aktif" @if($data->status == 'tidak aktif') selected
+                                    <option value="AKTIF" @if($data->status == 'AKTIF') selected @endif>Aktif</option>
+                                    <option value="TIDAK AKTIF" @if($data->status == 'TIDAK AKTIF') selected
                                         @endif>Tidak Aktif</option>
                                 </select>
                             </div>

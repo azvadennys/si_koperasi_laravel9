@@ -50,8 +50,8 @@
                             <div class="input-group input-group-outline mb-3 is-filled">
                                 <select class="form-control" name='status' id="inputGroupSelect01" required>
                                     <option selected>Pilih Status</option>
-                                    <option value="aktif">Aktif</option>
-                                    <option value="tidak aktif">Tidak Aktif</option>
+                                    <option value="AKTIF">Aktif</option>
+                                    <option value="TIDAK AKTIF">Tidak Aktif</option>
                                 </select>
                             </div>
 

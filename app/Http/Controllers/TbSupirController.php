@@ -18,7 +18,7 @@ class TbSupirController extends Controller
     public function index()
     {
         $data = [
-            'supir' => tb_supir::orderby('Nama_Supir', 'ASC')->paginate(15),
+            'supir' => tb_supir::orderby('Nama_Supir', 'ASC')->get(),
         ];
         return view('admin.supir.index', $data);
     }

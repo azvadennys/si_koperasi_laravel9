@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
     public function index()
     {
         $data = [
-            'akun' => PinjamanModel::orderby('tanggal', 'asc')->paginate(15),
+            'akun' => PinjamanModel::orderby('tanggal', 'asc')->get(),
         ];
         return view('admin.peminjaman.index', $data);
     }

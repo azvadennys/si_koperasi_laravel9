@@ -53,7 +53,8 @@
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-hover" id="" style="width: 100%">
+                        <table id="table_id" class="display table align-items-center table-hover" id=""
+                            style="width: 100%">
                             <thead class="thead-light">
                                 <tr class="text-center">
                                     {{-- <th scope="col">No</th> --}}
@@ -85,11 +86,11 @@
 
                                 // Multiply by 1000
                                 $perbulan = $perbulan * 10;
-                                
+
                                 @endphp
                                 <tr class="text-center">
                                     <td class="text-center">
-                                        {{ $key+ $akun->firstItem() }}
+                                        {{ $i++ }}
 
 
                                     </td>
@@ -140,7 +141,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-start">
-                        {{ $akun->onEachSide(1)->links() }}
+
                     </div>
                 </div>
             </div>

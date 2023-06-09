@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AnggotaExport;
 use App\Exports\PinjamanExport;
 use App\Exports\SimpananExport;
 use App\Models\AnggotaModel;
@@ -19,7 +20,7 @@ class LaporanController extends Controller
 
         // dd($tahun);
         $data = [
-            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->paginate(15),
+            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->get(),
             'tahun' => $tahun,
         ];
         // dd($data['akun']);
@@ -31,7 +32,7 @@ class LaporanController extends Controller
         $data = [
             'akun' => PinjamanModel::join('tb_anggota', 'tb_anggota.id', '=', 'tb_pinjaman.id_anggota')
                 ->orderBy('tb_anggota.nama', 'asc')
-                ->select('tb_pinjaman.*')->paginate(15),
+                ->select('tb_pinjaman.*')->get(),
         ];
         // dd($data['akun']);
         return view('admin.laporan.indexpinjaman', $data);
@@ -44,5 +45,10 @@ class LaporanController extends Controller
     public function indexpinjamanexcel($jenis)
     {
         return Excel::download(new PinjamanExport($jenis), 'Laporan Pinjaman Koperasi (' . $jenis . ').xlsx');
+    }
+
+    public function indexanggotaexcel()
+    {
+        return Excel::download(new AnggotaExport, 'Laporan Anggota Koperasi.xlsx');
     }
 }

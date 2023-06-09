@@ -22,7 +22,7 @@ class TbTransaksiController extends Controller
     public function index()
     {
         $data = [
-            'transaksi' => tb_transaksi::orderby('created_at', 'ASC')->paginate(15),
+            'transaksi' => tb_transaksi::orderby('created_at', 'ASC')->get(),
         ];
         // dd($data['transaksi']);
         return view('admin.transaksi.index', $data);

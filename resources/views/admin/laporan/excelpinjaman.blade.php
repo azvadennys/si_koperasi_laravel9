@@ -12,17 +12,17 @@
     <table>
         <thead>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="12" align="center">
                     <h4>DAFTAR PINJAMAN ANGGOTA</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="12" align="center">
                     <h4>KOPERASI PEGAWAI NEGERI DINAS PEKERJAAN UMUM PROVINSI BENGKULU</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="12" align="center">
                     <h4>SUMBER DANA {{ $jenis }}</h4>
                 </td>
             </tr>

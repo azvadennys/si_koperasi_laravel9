@@ -17,7 +17,7 @@ class TbMobilController extends Controller
     public function index()
     {
         $data = [
-            'mobil' => tb_mobil::orderby('status', 'DESC')->paginate(15),
+            'mobil' => tb_mobil::orderby('status', 'DESC')->get(),
         ];
         return view('admin.mobil.index', $data);
     }

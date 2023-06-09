@@ -54,7 +54,8 @@
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-hover" id="" style="width: 100%">
+                        <table id="table_id" class="display table align-items-center table-hover" id=""
+                            style="width: 100%">
                             <thead class="thead-light">
                                 <tr class="text-center">
                                     {{-- <th scope="col">No</th> --}}
@@ -76,7 +77,7 @@
 
                                 <tr class="text-center">
                                     <td class="text-center">
-                                        {{ $key+ $akun->firstItem() }}
+                                        {{ $i++ }}
 
 
                                     </td>
@@ -90,7 +91,7 @@
                                         {{ $index->anggota->unit_kerja }}
                                     </td>
                                     <td>
-                                        {{ $index->tanggal }}
+                                        {{ date("d M Y", strtotime($index->tanggal)) }}
                                     </td>
                                     <td class="text-end mx-5">
                                         {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
@@ -118,7 +119,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-start">
-                        {{ $akun->onEachSide(1)->links() }}
+
                     </div>
                 </div>
             </div>

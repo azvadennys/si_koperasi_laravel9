@@ -12,22 +12,22 @@
     <table>
         <thead>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="8" align="center">
                     <h4>DAFTAR SIMPANAN ANGGOTA</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="8" align="center">
                     <h4>KOPERASI PEGAWAI NEGERI DINAS PEKERJAAN UMUM PROVINSI BENGKULU</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="8" align="center">
                     <h4>(SIMPANAN POKOK- SIMPANAN WAJIB -SIMPANAN KHUSUS/SUKARELA)</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="7" align="center">
+                <td colspan="8" align="center">
                     <h4>TAHUN BUKU {{ $tahun }}</h4>
                 </td>
             </tr>

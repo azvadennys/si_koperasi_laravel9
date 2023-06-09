@@ -7,6 +7,7 @@ use App\Models\SimpananKhususModel;
 use App\Models\SimpananPokokModel;
 use App\Models\SimpananWajibModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SimpananController extends Controller
 {
@@ -18,7 +19,7 @@ class SimpananController extends Controller
     public function index()
     {
         $data = [
-            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->paginate(15),
+            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->get(),
         ];
         // dd($data['akun']);
         return view('admin.simpanan.index', $data);
@@ -26,21 +27,21 @@ class SimpananController extends Controller
     public function indexpokok()
     {
         $data = [
-            'akun' => SimpananPokokModel::orderby('tanggal', 'desc')->paginate(15),
+            'akun' => SimpananPokokModel::orderby('tanggal', 'desc')->get(),
         ];
         return view('admin.simpananpokok.index', $data);
     }
     public function indexwajib()
     {
         $data = [
-            'akun' => SimpananWajibModel::orderby('tanggal', 'desc')->paginate(15),
+            'akun' => SimpananWajibModel::orderby('tanggal', 'desc')->get(),
         ];
         return view('admin.simpananwajib.index', $data);
     }
     public function indexkhusus()
     {
         $data = [
-            'akun' => SimpananKhususModel::orderby('tanggal', 'desc')->paginate(15),
+            'akun' => SimpananKhususModel::orderby('tanggal', 'desc')->get(),
         ];
         return view('admin.simpanankhusus.index', $data);
     }
@@ -72,6 +73,7 @@ class SimpananController extends Controller
         $data = [
             'anggota' => AnggotaModel::all(),
         ];
+
         return view('admin.simpanankhusus.tambah', $data);
     }
 
@@ -128,10 +130,37 @@ class SimpananController extends Controller
      * @param  \App\Models\SimpananWajibModel  $simpananWajibModel
      * @return \Illuminate\Http\Response
      */
-    public function show(SimpananWajibModel $simpananWajibModel)
+    public function show(SimpananWajibModel $simpananWajibModel, $id)
     {
-        //
+        // $simpananWajib = DB::table('tb_simpanan_wajib')
+        //     ->select('tanggal', DB::raw("'wajib' AS jenis_simpanan"), 'tanggal', 'jumlah', 'id');
+
+        // $simpananPokok = DB::table('tb_simpanan_pokok')
+        //     ->select('tanggal', DB::raw("'pokok' AS jenis_simpanan"), 'tanggal', 'jumlah', 'id');
+
+        // $simpananKhusus = DB::table('tb_simpanan_khusus')
+        //     ->select('tanggal', DB::raw("'khusus' AS jenis_simpanan"), 'tanggal', 'jumlah', 'id');
+
+        // $gabunganSimpanan = $simpananWajib
+        //     ->unionAll($simpananPokok)
+        //     ->unionAll($simpananKhusus)
+        //     ->where('id_anggota', $id)
+        //     ->orderBy('tanggal', 'ASC')
+        //     ->get();
+
+        $data = [
+            'akun' => AnggotaModel::with(['simpananpokok' => function ($query) {
+                $query->orderBy('tanggal', 'DESC');
+            }, 'simpananwajib' => function ($query) {
+                $query->orderBy('tanggal', 'DESC');
+            }, 'simpanankhusus' => function ($query) {
+                $query->orderBy('tanggal', 'DESC');
+            }])->where('id', $id)->first(),
+        ];
+        // dd($data['akun']);
+        return view('admin.simpanan.detail', $data);
     }
+
 
     /**
      * Show the form for editing the specified resource.

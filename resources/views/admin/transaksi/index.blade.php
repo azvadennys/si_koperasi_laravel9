@@ -78,7 +78,8 @@
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-hover" id="" style="width: 100%">
+                        <table id="table_id" class="display table align-items-center table-hover" id=""
+                            style="width: 100%">
                             <thead class="thead-light">
                                 <tr>
                                     {{-- <th scope="col">No</th> --}}

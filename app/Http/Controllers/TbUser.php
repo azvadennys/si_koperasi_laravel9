@@ -18,7 +18,7 @@ class TbUser extends Controller
     public function index()
     {
         $data = [
-            'akun' => user::where('id', '!=', auth()->user()->id)->paginate(15),
+            'akun' => user::where('id', '!=', auth()->user()->id)->get(),
         ];
         return view('admin.user.index', $data);
     }

@@ -13,7 +13,8 @@
                             <h3 class="mb-0">Daftar Supir</h3>
                         </div>
                         <div class="col-lg-6 col-5 my-auto text-end">
-                            <a href="{{ route('supir.create') }}" class=" btn btn-sm btn-primary p-2 btnTambah">Tambah Supir</a>
+                            <a href="{{ route('supir.create') }}" class=" btn btn-sm btn-primary p-2 btnTambah">Tambah
+                                Supir</a>
                         </div>
 
                     </div>
@@ -52,7 +53,8 @@
 
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center table-hover" id="" style="width: 100%">
+                        <table id="table_id" class="display table align-items-center table-hover" id=""
+                            style="width: 100%">
                             <thead class="thead-light">
                                 <tr>
                                     {{-- <th scope="col">No</th> --}}

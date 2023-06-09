@@ -16,7 +16,7 @@ class PeriodeController extends Controller
     public function index()
     {
         $data = [
-            'akun' => PeriodeModel::orderby('status', 'asc')->paginate(15),
+            'akun' => PeriodeModel::orderby('status', 'asc')->get(),
         ];
         return view('admin.periode.index', $data);
     }
