@@ -57,21 +57,21 @@ class SimpananController extends Controller
     public function createpokok()
     {
         $data = [
-            'anggota' => AnggotaModel::all(),
+            'anggota' => AnggotaModel::orderby('nama', 'asc')->get(),
         ];
         return view('admin.simpananpokok.tambah', $data);
     }
     public function createwajib()
     {
         $data = [
-            'anggota' => AnggotaModel::all(),
+            'anggota' => AnggotaModel::orderby('nama', 'asc')->get(),
         ];
         return view('admin.simpananwajib.tambah', $data);
     }
     public function createkhusus()
     {
         $data = [
-            'anggota' => AnggotaModel::all(),
+            'anggota' => AnggotaModel::orderby('nama', 'asc')->get(),
         ];
 
         return view('admin.simpanankhusus.tambah', $data);
