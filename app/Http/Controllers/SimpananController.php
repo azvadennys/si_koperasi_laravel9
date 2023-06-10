@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
 use App\Models\SimpananKhususModel;
+use App\Models\SimpananPengambilanModel;
 use App\Models\SimpananPokokModel;
 use App\Models\SimpananWajibModel;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class SimpananController extends Controller
     public function index()
     {
         $data = [
-            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->get(),
+            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus', 'pengambilan')->orderby('nama', 'asc')->get(),
         ];
         // dd($data['akun']);
         return view('admin.simpanan.index', $data);
@@ -75,6 +76,36 @@ class SimpananController extends Controller
         ];
 
         return view('admin.simpanankhusus.tambah', $data);
+    }
+    public function pengambilan($id)
+    {
+        $index = AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus', 'pengambilan')->where('id', $id)->first();
+        $totalsimpanan = 0;
+        $wajib = $index->simpananwajib->sum('jumlah');
+        $pokok = $index->simpananpokok->sum('jumlah');
+        $khusus = $index->simpanankhusus->sum('jumlah');
+        $pengambilan = $index->pengambilan->sum('jumlah');
+
+        $totalsimpanan += $wajib += $pokok += $khusus -= $pengambilan;
+        // dd($totalsimpanan);
+        $data = [
+            'anggota' => AnggotaModel::where('id', $id)->first(),
+            'totalsimpanan' => $totalsimpanan,
+        ];
+
+        return view('admin.simpanan.pengambilan', $data);
+    }
+    public function storepengambilan(Request $request, $id)
+    {
+        SimpananPengambilanModel::insert(
+            [
+                'id_anggota' => $id,
+                'tanggal' => $request->tanggal,
+                'jumlah' => $request->jumlah,
+                'created_at' => now(),
+            ]
+        );
+        return redirect()->back()->withSuccess('Berhasil Tambah Data');
     }
 
     /**
@@ -154,6 +185,8 @@ class SimpananController extends Controller
             }, 'simpananwajib' => function ($query) {
                 $query->orderBy('tanggal', 'DESC');
             }, 'simpanankhusus' => function ($query) {
+                $query->orderBy('tanggal', 'DESC');
+            }, 'pengambilan' => function ($query) {
                 $query->orderBy('tanggal', 'DESC');
             }])->where('id', $id)->first(),
         ];

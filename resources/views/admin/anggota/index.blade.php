@@ -79,7 +79,7 @@
                                     @endphp
                                     @foreach ($akun as $key=> $index)
 
-                                    <tr class="text-center">
+                                    <tr class="text-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 

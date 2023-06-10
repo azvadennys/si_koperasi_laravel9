@@ -32,7 +32,8 @@
                             </div>
                             <div class="input-group input-group-static mb-4">
                                 <label>Tanggal Pembayaran</label>
-                                <input type="date" name='tanggal' class="form-control" required>
+                                <input type="date" value="{{ date('Y-m-d') }}" name='tanggal' class="form-control"
+                                    required>
                             </div>
                             @php
                             $number = $peminjaman->jumlah / $peminjaman->lama_peminjaman + $peminjaman->bunga_perbulan;
@@ -50,7 +51,7 @@
                             <div class="input-group input-group-static mb-4">
                                 <label>Jumlah</label>
                                 <input type="number" name='jumlah' id="jumlah" class="form-control"
-                                    value="{{ $perbulan }}" required placeholder="Masukkan Jumlah">
+                                    value="{{ $perbulan }}" required readonly placeholder="Masukkan Jumlah">
                             </div>
 
                             <div class="text-center">

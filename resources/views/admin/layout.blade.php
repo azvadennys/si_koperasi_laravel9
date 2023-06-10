@@ -42,10 +42,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="{{asset('dist')}}/css/select2.min.css" rel="stylesheet" />
     <script src="{{asset('dist')}}/js/select2.full.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <link href="{{asset('DataTables')}}/datatables.min.css" rel="stylesheet" />
 
+    <script src="{{asset('DataTables')}}DataTables/datatables.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -351,6 +351,7 @@
     $('#table_id').DataTable();
     $('#table_id2').DataTable();
     $('#table_id3').DataTable();
+    $('#table_id4').DataTable();
 } );
     </script>
     @if (session()->has('success'))

@@ -12,22 +12,22 @@
     <table>
         <thead>
             <tr>
-                <td colspan="8" align="center">
+                <td colspan="9" align="center">
                     <h4>DAFTAR SIMPANAN ANGGOTA</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="8" align="center">
+                <td colspan="9" align="center">
                     <h4>KOPERASI PEGAWAI NEGERI DINAS PEKERJAAN UMUM PROVINSI BENGKULU</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="8" align="center">
+                <td colspan="9" align="center">
                     <h4>(SIMPANAN POKOK- SIMPANAN WAJIB -SIMPANAN KHUSUS/SUKARELA)</h4>
                 </td>
             </tr>
             <tr>
-                <td colspan="8" align="center">
+                <td colspan="9" align="center">
                     <h4>TAHUN BUKU {{ $tahun }}</h4>
                 </td>
             </tr>
@@ -43,6 +43,7 @@
                 <th align="center">SIMPANAN POKOK</th>
                 <th align="center">SIMPANAN WAJIB</th>
                 <th align="center">SIMPANAN KHUSUS</th>
+                <th align="center">PENGAMBILAN</th>
                 <th align="center">TOTAL SIMPANAN</th>
             </tr>
         </thead>
@@ -58,10 +59,12 @@
             $wajib = $index->simpananwajib->sum('jumlah');
             $pokok = $index->simpananpokok->sum('jumlah');
             $khusus = $index->simpanankhusus->sum('jumlah');
+            $pengambilan = $index->pengambilan->sum('jumlah');
 
             $totalsimpanan += $wajib;
             $totalsimpanan += $pokok;
             $totalsimpanan += $khusus;
+            $totalsimpanan -= $pengambilan;
 
             $totalsimpanansebelum = 0;
             $wajibsebelum = $akunsebelum[$indexke]->simpananwajib->sum('jumlah');
@@ -69,17 +72,19 @@
             $pokoksebelum = $akunsebelum[$indexke]->simpananpokok->sum('jumlah');
 
             $khusussebelum = $akunsebelum[$indexke]->simpanankhusus->sum('jumlah');
+            $pengambilansebelum = $akunsebelum[$indexke]->pengambilan->sum('jumlah');
 
             $totalsimpanansebelum += $wajibsebelum;
             $totalsimpanansebelum += $pokoksebelum;
             $totalsimpanansebelum += $khusussebelum;
+            $totalsimpanansebelum -= $pengambilansebelum;
             $indexke++;
             @endphp
             <tr class="text-center">
                 <td align="center">
                     {{ $no++ }}
                 </td>
-                <td align="center">
+                <td align="left">
                     {{ $index->nama }}<br>NIP {{ $index->nip }}
                 </td>
                 <td align="center">
@@ -96,6 +101,9 @@
                 </td>
                 <td align="right">
                     {{ 'Rp ' . number_format($khusus, 0, ',', '.') }}
+                </td>
+                <td align="right">
+                    {{ 'Rp ' . number_format($pengambilan, 0, ',', '.') }}
                 </td>
                 <td align="right">
                     {{ 'Rp ' . number_format($totalsimpanan + $totalsimpanansebelum, 0, ',', '.')}}

@@ -83,11 +83,12 @@
                                     $wajib = $index->simpananwajib->sum('jumlah');
                                     $pokok = $index->simpananpokok->sum('jumlah');
                                     $khusus = $index->simpanankhusus->sum('jumlah');
+                                    $pengambilan = $index->pengambilan->sum('jumlah');
 
-                                    $totalsimpanan += $wajib += $pokok += $khusus;
+                                    $totalsimpanan += $wajib += $pokok += $khusus -= $pengambilan;
 
                                     @endphp
-                                    <tr class="text-center">
+                                    <tr class="text-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 
@@ -112,6 +113,9 @@
                                                 <a href="{{ route('simpanan.detail',$index->id) }}"
                                                     class="btn btn-info btn-sm btnEdit">
                                                     Detail</a>
+                                                <a href="{{ route('simpanan.pengambilan',$index->id) }}"
+                                                    class="btn btn-success btn-sm btnEdit">
+                                                    Pengambilan</a>
                                             </div>
                                         </td>
                                     </tr>

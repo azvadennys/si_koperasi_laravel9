@@ -20,7 +20,7 @@ class LaporanController extends Controller
 
         // dd($tahun);
         $data = [
-            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus')->orderby('nama', 'asc')->get(),
+            'akun' => AnggotaModel::with('simpananpokok', 'simpananwajib', 'simpanankhusus', 'pengambilan')->orderby('nama', 'asc')->get(),
             'tahun' => $tahun,
         ];
         // dd($data['akun']);

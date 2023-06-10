@@ -34,6 +34,13 @@ return new class extends Migration
             $table->bigInteger('jumlah');
             $table->timestamps();
         });
+        Schema::create('tb_pengambilan_simpanan', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_anggota')->constrained('tb_anggota');
+            $table->date('tanggal');
+            $table->bigInteger('jumlah');
+            $table->timestamps();
+        });
     }
 
     /**

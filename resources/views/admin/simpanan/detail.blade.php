@@ -10,7 +10,7 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-0">Detail Simpanan Khusus {{ $akun->nama }}</h3>
+                            <h3 class="mb-0">Simpanan Khusus - {{ $akun->nama }}</h3>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -69,7 +69,7 @@
                                     @endphp
                                     @foreach ($akun->simpanankhusus as $key=> $index)
 
-                                    <tr class="text-center">
+                                    <tr class="text-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 
@@ -114,7 +114,7 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-0">Detail Simpanan Wajib {{ $akun->nama }}</h3>
+                            <h3 class="mb-0"> Simpanan Wajib - {{ $akun->nama }}</h3>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -174,7 +174,7 @@
                                     @endphp
                                     @foreach ($akun->simpananwajib as $key=> $index)
 
-                                    <tr class="text-center">
+                                    <tr class="text-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 
@@ -213,13 +213,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-4">
             <div class="card shadow">
                 <!-- Card header -->
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-0">Detail Simpanan Pokok {{ $akun->nama }}</h3>
+                            <h3 class="mb-0">Simpanan Pokok - {{ $akun->nama }}</h3>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -279,7 +279,112 @@
                                     @endphp
                                     @foreach ($akun->simpananpokok as $key=> $index)
 
+                                    <tr class="text-left">
+                                        <td class="text-center">
+                                            {{ $i++ }}
+
+
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nama }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->nip }}
+                                        </td>
+                                        <td>
+                                            {{ $index->anggota->unit_kerja }}
+                                        </td>
+                                        <td>
+                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                        </td>
+                                        <td class="text-end mx-5">
+                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                        </td>
+
+
+                                    </tr>
+
+
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-start">
+                        {{-- --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mb-4">
+            <div class="card shadow">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-0">Pengambilan - {{ $akun->nama }}</h3>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-6 text-center">
+                            {{-- @if (session()->has('success'))
+                            <div class="alert alert-info my-2" role="alert">
+                                <strong>{{ session('success') }}</strong>
+                            </div>
+                            @endif --}}
+                            @if (session()->has('Errors'))
+                            <div class="alert alert-danger my-2" role="alert">
+                                <strong>{{ session('Errors') }}</strong>
+                            </div>
+                            @endif
+                            @if ($errors->any())
+                            <div class="alert alert-danger my-2" role="alert">
+
+                                @foreach ($errors->all() as $error)
+
+                                <strong>{{ $error }}</strong><br>
+
+                                @endforeach
+
+                            </div>
+                            @endif
+
+                            {{-- @error('id')
+                            <div class="alert alert-danger my-2" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror --}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+
+                    <div class="row justify-content-center ">
+                        <div class="table-responsive col-10">
+                            <table id="table_id4" class="display table align-items-center table-hover" id=""
+                                style="width: 100%">
+                                <thead class="thead-light">
                                     <tr class="text-center">
+                                        {{-- <th scope="col">No</th> --}}
+                                        <th class="text-center">NO</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">Unit Kerja</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($akun->pengambilan as $key=> $index)
+
+                                    <tr class="text-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 

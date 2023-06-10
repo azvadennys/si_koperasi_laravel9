@@ -108,13 +108,16 @@
                                             {{ $index->lama_peminjaman }}
                                         </td>
                                         <td>
-                                            {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
+                                            {{ 'Rp ' . number_format($index->jumlah+
+                                            ($index->jumlah*0.02*$index->lama_peminjaman), 0, ',', '.') }}
                                         </td>
                                         <td>
                                             {{ 'Rp ' . number_format($perbulan, 0, ',', '.') }}
                                         </td>
                                         <td>
-                                            {{ 'Rp ' . number_format($index->jumlah - $index->angsuran->sum('jumlah'),
+                                            {{ 'Rp ' . number_format($index->jumlah +
+                                            ($index->jumlah*0.02*$index->lama_peminjaman) -
+                                            $index->angsuran->sum('jumlah'),
                                             0,
                                             ',', '.') }}
                                         </td>

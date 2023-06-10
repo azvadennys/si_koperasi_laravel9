@@ -68,6 +68,8 @@ class SimpananExport implements FromView, ShouldAutoSize, WithStyles, WithDefaul
             $query->whereYear('tanggal', '=', $tahun);
         }, 'simpanankhusus' => function ($query) use ($tahun) {
             $query->whereYear('tanggal', '=', $tahun);
+        }, 'pengambilan' => function ($query) use ($tahun) {
+            $query->whereYear('tanggal', '=', $tahun);
         }])->orderby('nama', 'asc')->get();
 
         $indexsebelum = AnggotaModel::with(['simpananpokok' => function ($query) use ($tahunsebelum) {
@@ -75,6 +77,8 @@ class SimpananExport implements FromView, ShouldAutoSize, WithStyles, WithDefaul
         }, 'simpananwajib' => function ($query) use ($tahunsebelum) {
             $query->whereYear('tanggal', '<=', $tahunsebelum);
         }, 'simpanankhusus' => function ($query) use ($tahunsebelum) {
+            $query->whereYear('tanggal', '<=', $tahunsebelum);
+        }, 'pengambilan' => function ($query) use ($tahunsebelum) {
             $query->whereYear('tanggal', '<=', $tahunsebelum);
         }])->orderby('nama', 'asc')->get();
 

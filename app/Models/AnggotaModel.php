@@ -23,4 +23,8 @@ class AnggotaModel extends Model
     {
         return $this->hasMany(SimpananKhususModel::class, 'id_anggota', 'id');
     }
+    public function pengambilan()
+    {
+        return $this->hasMany(SimpananPengambilanModel::class, 'id_anggota', 'id');
+    }
 }

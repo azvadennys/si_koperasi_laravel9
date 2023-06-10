@@ -34,7 +34,8 @@
                             </div>
                             <div class="input-group input-group-static mb-4">
                                 <label>Tanggal</label>
-                                <input type="date" name='tanggal' class="form-control" required>
+                                <input type="date" value="{{ date('Y-m-d') }}" name='tanggal' class="form-control"
+                                    required readonly>
                             </div>
                             <div class="input-group input-group-static mb-4">
                                 <label>Jumlah</label>
@@ -56,5 +57,7 @@
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementByname('tanggal').valueAsDate = new Date();
+</script>
 @endsection

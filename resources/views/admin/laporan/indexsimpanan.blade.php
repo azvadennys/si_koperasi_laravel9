@@ -78,6 +78,7 @@
                                         <th scope="col">Simpanan Wajib</th>
                                         <th scope="col">Simpanan Pokok</th>
                                         <th scope="col">Simpanan Khusus</th>
+                                        <th scope="col">Pengambilan Dana</th>
                                         <th scope="col">Total Saldo</th>
                                     </tr>
                                 </thead>
@@ -93,23 +94,26 @@
                                     $wajib = $index->simpananwajib->sum('jumlah');
                                     $pokok = $index->simpananpokok->sum('jumlah');
                                     $khusus = $index->simpanankhusus->sum('jumlah');
+                                    $pengambilan = $index->pengambilan->sum('jumlah');
 
-                                    $totalsimpanan += $wajib += $pokok += $khusus;
-
+                                    $totalsimpanan += $wajib;
+                                    $totalsimpanan += $pokok;
+                                    $totalsimpanan += $khusus;
+                                    $totalsimpanan -= $pengambilan;
                                     @endphp
-                                    <tr>
+                                    <tr class="texxt-left">
                                         <td class="text-center">
                                             {{ $i++ }}
 
 
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             {{ $index->nama }}
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             {{ $index->nip }}
                                         </td>
-                                        <td class="text-center">
+                                        <td>
                                             {{ $index->unit_kerja }}
                                         </td>
                                         <td class="text-end px-5">
@@ -120,6 +124,9 @@
                                         </td>
                                         <td class="text-end px-5">
                                             {{ 'Rp ' . number_format($khusus, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-end px-5">
+                                            {{ 'Rp ' . number_format($pengambilan, 0, ',', '.') }}
                                         </td>
                                         <td class="text-end px-5">
                                             {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
