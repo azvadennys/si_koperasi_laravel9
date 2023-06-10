@@ -119,11 +119,14 @@ class TbAnggota extends Seeder
 (101, 'Lufty Al Dionesi',196606161991031006, 'Cipta Karya', '2022-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
 (102, 'Mirzan Nasyirin',196802071992031007, 'Cipta Karya', '2022-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
 (103, 'Leni Purnama',197701172002122003, 'Cipta Karya', '2022-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
-(104, 'Ir. Nursayah Effendi ',196403161992111001, 'Cipta Karya', '2022-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL);
+(104, 'Ir. Nursayah Effendi ',196403161992111001, 'Cipta Karya', '2022-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
+(105, 'Hadison',196611232006041004, 'Sekretariat', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
+(106, 'Farizal',196907232007011004, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
+(107, 'Heryanto',198211112012121004, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
+(108, 'Maslian Ekananda, ST., MH',197710152002121005, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL),
+(109, 'Min Haryadi, ST',197207052007011013, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL), 
+(110, 'Novianto, ST',197211112007011005, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL), 
+(111, 'Prahadi Kusuma,  ST',197603172007011002, 'Bina Marga', '2023-01-01', '-', '-', 'AKTIF', '2023-01-01 13:05:58', NULL);
 ");
-
-        //DB::insert("INSERT INTO `tb_periode` (`id`, `nama`, `tanggal_mulai`, `tanggal_akhir`, `status`, `created_at`, `updated_at`) VALUES
-        // (1, 'dadwaddwadawd', '2023-05-16', '2023-05-25', 'tidak aktif', '2023-05-21 20:17:27', '2023-05-21 20:22:57'),
-        // (2, 'dwadda', '2023-05-16', '2023-05-25', 'aktif', '2023-05-21 20:17:27', '2023-05-21 20:22:57');");
     }
 }

@@ -1,18 +1,17 @@
 @extends('admin.layout', ['active' => __('simpanan')])
 
 @section('content')
-
-<div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <!-- Card header -->
-                <div class="card-header border-0">
-                    <div class="row">
-                        <div class="col-lg-6 col-7">
-                            <h3 class="mb-0">Daftar Simpanan</h3>
-                        </div>
-                        {{-- <div class="col-lg-6 col-5 my-auto text-end">
+    <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <div class="row">
+                            <div class="col-lg-6 col-7">
+                                <h3 class="mb-0">Daftar Simpanan</h3>
+                            </div>
+                            {{-- <div class="col-lg-6 col-5 my-auto text-end">
                             <a href="{{ route('simpanan.create') }}"
                                 class=" btn btn-sm btn-primary p-2 btnTambah">Simpanan Wajib</a>
                             <a href="{{ route('simpanan.create') }}" class=" btn btn-sm btn-info p-2 btnTambah">Simpanan
@@ -21,159 +20,158 @@
                                 Khusus</a>
                         </div> --}}
 
-                    </div>
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-6 text-center">
-                            {{-- @if (session()->has('success'))
+                        </div>
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-6 text-center">
+                                {{-- @if (session()->has('success'))
                             <div class="alert alert-info my-2" role="alert">
                                 <strong>{{ session('success') }}</strong>
                             </div>
                             @endif --}}
-                            @if (session()->has('Errors'))
-                            <div class="alert alert-danger my-2" role="alert">
-                                <strong>{{ session('Errors') }}</strong>
-                            </div>
-                            @endif
-                            @if ($errors->any())
-                            <div class="alert alert-danger my-2" role="alert">
+                                @if (session()->has('Errors'))
+                                    <div class="alert alert-danger my-2" role="alert">
+                                        <strong>{{ session('Errors') }}</strong>
+                                    </div>
+                                @endif
+                                @if ($errors->any())
+                                    <div class="alert alert-danger my-2" role="alert">
 
-                                @foreach ($errors->all() as $error)
+                                        @foreach ($errors->all() as $error)
+                                            <strong>{{ $error }}</strong><br>
+                                        @endforeach
 
-                                <strong>{{ $error }}</strong><br>
+                                    </div>
+                                @endif
 
-                                @endforeach
-
-                            </div>
-                            @endif
-
-                            {{-- @error('id')
+                                {{-- @error('id')
                             <div class="alert alert-danger my-2" role="alert">
                                 <strong>{{ $message }}</strong>
                             </div>
                             @enderror --}}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card-body p-0">
-                    <div class="row justify-content-center ">
-                        <div class="table-responsive col-10">
-                            <table id="table_id" class="display table align-items-center table-hover" id=""
-                                style="width: 100%">
-                                <thead class="thead-light">
-                                    <tr class="text-center">
-                                        {{-- <th scope="col">No</th> --}}
-                                        <th class="text-center">NO</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">NIP</th>
-                                        <th scope="col">Unit Kerja</th>
-                                        <th scope="col">Total Saldo</th>
-                                        <th class="text-right pr-6">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-
-                                    $i = 1;
-                                    @endphp
-                                    @foreach ($akun as $key=> $index)
-                                    @php
-
-                                    $totalsimpanan = 0;
-                                    $wajib = $index->simpananwajib->sum('jumlah');
-                                    $pokok = $index->simpananpokok->sum('jumlah');
-                                    $khusus = $index->simpanankhusus->sum('jumlah');
-                                    $pengambilan = $index->pengambilan->sum('jumlah');
-
-                                    $totalsimpanan += $wajib += $pokok += $khusus -= $pengambilan;
-
-                                    @endphp
-                                    <tr class="text-left">
-                                        <td class="text-center">
-                                            {{ $i++ }}
-
-
-                                        </td>
-                                        <td>
-                                            {{ $index->nama }}
-                                        </td>
-                                        <td>
-                                            {{ $index->nip }}
-                                        </td>
-                                        <td>
-                                            {{ $index->unit_kerja }}
-                                        </td>
-
-                                        <td class="text-end mx-5">
-                                            {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
-                                        </td>
-
-                                        <td>
-                                            <div class="text-right">
-                                                <a href="{{ route('simpanan.detail',$index->id) }}"
-                                                    class="btn btn-info btn-sm btnEdit">
-                                                    Detail</a>
-                                                <a href="{{ route('simpanan.pengambilan',$index->id) }}"
-                                                    class="btn btn-success btn-sm btnEdit">
-                                                    Pengambilan</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                    <div class="card-body p-0">
+                        <div class="row justify-content-center ">
+                            <div class="table-responsive col-10">
+                                <table id="table_id" class="display table align-items-center table-hover" id=""
+                                    style="width: 100%">
+                                    <thead class="thead-light">
+                                        <tr class="text-center">
+                                            {{-- <th scope="col">No</th> --}}
+                                            <th class="text-center">NO</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">NIP</th>
+                                            <th scope="col">Unit Kerja</th>
+                                            <th scope="col">Total Saldo</th>
+                                            <th class="text-right pr-6">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            
+                                            $i = 1;
+                                        @endphp
+                                        @foreach ($akun as $key => $index)
+                                            @php
+                                                
+                                                $totalsimpanan = 0;
+                                                $wajib = $index->simpananwajib->sum('jumlah');
+                                                $pokok = $index->simpananpokok->sum('jumlah');
+                                                $khusus = $index->simpanankhusus->sum('jumlah');
+                                                $pengambilan = $index->pengambilan->sum('jumlah');
+                                                
+                                                $totalsimpanan += $wajib += $pokok += $khusus -= $pengambilan;
+                                                
+                                            @endphp
+                                            <tr class="text-left">
+                                                <td class="text-center">
+                                                    {{ $i++ }}
 
 
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                                </td>
+                                                <td>
+                                                    {{ $index->nama }}
+                                                </td>
+                                                <td>
+                                                    {{ $index->nip }}
+                                                </td>
+                                                <td>
+                                                    {{ $index->unit_kerja }}
+                                                </td>
+
+                                                <td class="text-end mx-5">
+                                                    {{ 'Rp ' . number_format($totalsimpanan, 0, ',', '.') }}
+                                                </td>
+
+
+                                                <td>
+                                                    <div class="text-center">
+                                                        <a href="{{ route('simpanan.detail', $index->id) }}"
+                                                            class="btn btn-info btn-sm btnEdit">
+                                                            Detail</a>
+                                                        @if ($totalsimpanan > 0)
+                                                            <a href="{{ route('simpanan.pengambilan', $index->id) }}"
+                                                                class="btn btn-success btn-sm btnEdit">
+                                                                Pengambilan</a>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-start">
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-start">
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
     @endsection
 
     @section('custom_html')
-    @foreach ($akun as $index)
-    <form action="{{ route('simpanan.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
-        @csrf
-        @method('DELETE')
-    </form>
-    @endforeach
+        @foreach ($akun as $index)
+            <form action="{{ route('simpanan.destroy', $index->id) }}" id="delete-form-{{ $index->id }}" method="post">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endforeach
     @endsection
 
     @push('custom_js')
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/dt/dt-1.13.1/cr-1.6.1/r-2.4.0/sc-2.0.7/sb-1.4.0/datatables.min.js"></script>
-    <script>
-        let removeBtns = document.querySelectorAll('.remove-btn');
-        removeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
+        <script type="text/javascript"
+            src="https://cdn.datatables.net/v/dt/dt-1.13.1/cr-1.6.1/r-2.4.0/sc-2.0.7/sb-1.4.0/datatables.min.js"></script>
+        <script>
+            let removeBtns = document.querySelectorAll('.remove-btn');
+            removeBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
 
-                let id = btn.getAttribute('data-id');
-                let deleteForm = document.querySelector('#delete-form-'+ id);
+                    let id = btn.getAttribute('data-id');
+                    let deleteForm = document.querySelector('#delete-form-' + id);
 
-                Swal.fire({
-  title: 'Apakah anda yakin menghapus data?',
-  text: "Anda tidak dapat mengembalikan data yang sudah dihapus!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes'
-}).then((result) => {
-  if (result.isConfirmed) {
-    deleteForm.submit();
-  }
-})
+                    Swal.fire({
+                        title: 'Apakah anda yakin menghapus data?',
+                        text: "Anda tidak dapat mengembalikan data yang sudah dihapus!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            deleteForm.submit();
+                        }
+                    })
+                })
             })
-        })
-
-    </script>
+        </script>
     @endpush

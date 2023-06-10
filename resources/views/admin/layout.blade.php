@@ -37,7 +37,7 @@
     <link id="pagestyle" href="{{asset('assets')}}/css/material-dashboard.css?v=3.0.5" rel="stylesheet" />
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    {{-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="{{asset('dist')}}/css/select2.min.css" rel="stylesheet" />
@@ -45,7 +45,7 @@
 
     <link href="{{asset('DataTables')}}/datatables.min.css" rel="stylesheet" />
 
-    <script src="{{asset('DataTables')}}DataTables/datatables.min.js"></script>
+    <script src="{{asset('DataTables')}}/datatables.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -336,7 +336,7 @@
     }
     </script>
     <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.5')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>

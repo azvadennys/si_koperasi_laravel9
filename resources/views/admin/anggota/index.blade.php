@@ -95,7 +95,7 @@
                                             {{ $index->unit_kerja }}
                                         </td>
                                         <td>
-                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                            {{ date("d F Y", strtotime($index->tanggal)) }}
                                         </td>
                                         <td>
                                             {{ $index->no_telepon }}

@@ -37,13 +37,15 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $pinjaman = PinjamanModel::get();
-    $angsuran = AngsuranModel::sum('jumlah');
+    $totalpinjaman = 0;
+    $bungadidapat = 0;
+    $sisapinjaman = 0;
     if ($pinjaman->count() > 0) {
         foreach ($pinjaman as $index) {
-            $totalpinjaman = $index->jumlah + ($index->jumlah * 0.02 * $index->lama_peminjaman) - $angsuran;
+            $totalpinjaman += $index->jumlah;
+            $sisapinjaman += $index->jumlah + ($index->jumlah * 0.02 * $index->lama_peminjaman) - $index->angsuran->sum('jumlah');
+            $bungadidapat +=  $index->bunga_perbulan * $index->angsuran->count();
         };
-    } else {
-        $totalpinjaman = 0;
     }
 
     $data = [
@@ -53,6 +55,8 @@ Route::get('/dashboard', function () {
         'pengambilan' => SimpananPengambilanModel::sum('jumlah'),
         'anggota' => AnggotaModel::count(),
         'pinjaman' => $totalpinjaman,
+        'sisapinjaman' => $sisapinjaman,
+        'bunga' => $bungadidapat,
 
     ];
     // dd($data['sisapinjaman']);

@@ -52,7 +52,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TbAnggota::class,
-            // TbSupirSeeder::class,
+            TbSimpanan::class,
+            TbPinjaman::class,
 
         ]);
     }

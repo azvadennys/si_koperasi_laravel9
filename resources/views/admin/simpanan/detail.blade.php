@@ -85,7 +85,7 @@
                                             {{ $index->anggota->unit_kerja }}
                                         </td>
                                         <td>
-                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                            {{ date("d F Y", strtotime($index->tanggal)) }}
                                         </td>
                                         <td class="text-end mx-5">
                                             {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
@@ -190,7 +190,7 @@
                                             {{ $index->anggota->unit_kerja }}
                                         </td>
                                         <td>
-                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                            {{ date("d F Y", strtotime($index->tanggal)) }}
                                         </td>
                                         <td class="text-end mx-5">
                                             {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
@@ -295,7 +295,7 @@
                                             {{ $index->anggota->unit_kerja }}
                                         </td>
                                         <td>
-                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                            {{ date("d F Y", strtotime($index->tanggal)) }}
                                         </td>
                                         <td class="text-end mx-5">
                                             {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}
@@ -400,7 +400,7 @@
                                             {{ $index->anggota->unit_kerja }}
                                         </td>
                                         <td>
-                                            {{ date("d M Y", strtotime($index->tanggal)) }}
+                                            {{ date("d F Y", strtotime($index->tanggal)) }}
                                         </td>
                                         <td class="text-end mx-5">
                                             {{ 'Rp ' . number_format($index->jumlah, 0, ',', '.') }}

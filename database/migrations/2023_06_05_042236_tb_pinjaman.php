@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_pinjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_anggota')->constrained('tb_anggota');
+            $table->foreignId('id_anggota')->constrained('tb_anggota')->onDelete('cascade');;
             $table->date('tanggal');
             $table->string('sumber_dana');
             $table->integer('lama_peminjaman');
@@ -26,7 +26,7 @@ return new class extends Migration
 
         Schema::create('tb_angsuran', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pinjaman')->constrained('tb_pinjaman');
+            $table->foreignId('id_pinjaman')->constrained('tb_pinjaman')->onDelete('cascade');;
             $table->date('tanggal');
             $table->bigInteger('jumlah');
             $table->timestamps();

@@ -8,6 +8,24 @@
             <div class="card mb-4">
                 <div class="card-header p-3 pt-2">
                     <div
+                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">person</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">JUMLAH ANGGOTA</p>
+                        <h4 class="mb-0">{{ $anggota }} Anggota</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0">ANGGOTA KOPERASI</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+            <div class="card mb-4">
+                <div class="card-header p-3 pt-2">
+                    <div
                         class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                         <i class="material-icons opacity-10">money</i>
                     </div>
@@ -98,6 +116,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+            <div class="card mb-4">
+                <div class="card-header p-3 pt-2">
+                    <div
+                        class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">money</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($bunga, 0, ',', '.') }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                    <p class="mb-0">TOTAL BUNGA DIDAPAT</p>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
             <div class="card mb-4">
                 <div class="card-header p-3 pt-2">
@@ -112,7 +149,7 @@
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer p-3">
-                    <p class="mb-0">TOTAL SISA PINJAMAN</p>
+                    <p class="mb-0">TOTAL YANG DIPINJAMKAN</p>
                 </div>
             </div>
         </div>
@@ -121,19 +158,20 @@
                 <div class="card-header p-3 pt-2">
                     <div
                         class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">person</i>
+                        <i class="material-icons opacity-10">money</i>
                     </div>
                     <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">JUMLAH ANGGOTA</p>
-                        <h4 class="mb-0">{{ $anggota }} Anggota</h4>
+                        <p class="text-sm mb-0 text-capitalize">SALDO KESELURUHAN</p>
+                        <h4 class="mb-0">{{ 'Rp ' . number_format($sisapinjaman, 0, ',', '.') }}</h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer p-3">
-                    <p class="mb-0">ANGGOTA KOPERASI</p>
+                    <p class="mb-0">TOTAL SISA PINJAMAN TERMASUK BUNGA</p>
                 </div>
             </div>
         </div>
+
     </div>
 
     @endsection
