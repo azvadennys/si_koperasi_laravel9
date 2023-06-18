@@ -33,7 +33,7 @@
                                 <div class="input-group input-group-static mb-4">
                                     <label>Tanggal</label>
                                     <input type="date" value="{{ date('Y-m-d') }}" name='tanggal' class="form-control"
-                                        required readonly>
+                                        required>
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Jumlah</label>

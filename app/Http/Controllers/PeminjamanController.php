@@ -44,6 +44,12 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'jumlah' => 'required|numeric|max:50000000',
+        ], [
+            'jumlah.max' => 'Maksimal Pinjaman Rp50.000.000'
+        ]);
+        // dd($validated);
         PinjamanModel::insert(
             [
                 'id_anggota' => $request->id_anggota,

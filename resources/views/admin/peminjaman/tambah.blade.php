@@ -15,7 +15,8 @@
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+                                <div class="alert alert-danger text-white text-center alert-dismissible fade show my-2"
+                                    role="alert">
                                     @foreach ($errors->all() as $error)
                                         <strong>{{ $error }}</strong><br>
                                     @endforeach
@@ -42,12 +43,13 @@
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Tanggal Peminjaman</label>
-                                    <input type="date" name='tanggal' class="form-control" required>
+                                    <input type="date" name='tanggal'value="{{ date('Y-m-d') }}" class="form-control"
+                                        required>
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Lama Peminjaman (Bulan)</label>
                                     <input type="number" name='lama_peminjaman' class="form-control" value=""
-                                        required placeholder="Masukkan Lama Peminjaman dalam bulan">
+                                        required placeholder="Maksimal 128 Bulan" max="128" min="1">
                                 </div>
                                 {{-- <div class="input-group input-group-static mb-4">
                                 <label>Jumlah</label>
@@ -57,7 +59,7 @@
                                 <div class="input-group input-group-static mb-4">
                                     <label>Jumlah</label>
                                     <input type="text" id="formattedInput" class="form-control" value=""
-                                        onkeyup="formatInput(this)" required>
+                                        onkeyup="formatInput(this)" placeholder="Maksimal Rp50.000.000" required>
                                 </div>
                                 <input type="hidden" name='jumlah' id="realInput">
                                 <div class="input-group input-group-static mb-4">
